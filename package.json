@@ -1,7 +1,40 @@
 {
 	"name": "figma-plugin-svelte-vite",
 	"private": true,
-	"version": "0.0.0",
+	"version": "1.0.0-beta",
+	"description": "Create Figma plugins with Svelte + Vite + TypeScript",
+	"homepage": "https://www.github.com/the-dataface/figma-plugin-svelte-vite",
+	"repository": {
+		"type": "git",
+		"url": "https://www.github.com/the-dataface/figma-plugin-svelte-vite.git"
+	},
+	"bugs": {
+		"email": "sawyer@thedataface.com",
+		"url": "https://www.github.com/the-dataface/figma-plugin-svelte-vite/issues/new/choose"
+	},
+	"license": "MIT",
+	"keywords": [
+		"figma plugins",
+		"svelte"
+	],
+	"author": {
+		"name": "Sawyer Click",
+		"email": "sawyerclick@gmail.com",
+		"url": "https://www.sawyer.codes"
+	},
+	"contributors": [
+		{
+			"name": "Sam Vickars",
+			"email": "sam.vickars@gmail.com",
+			"url": "https://www.samvickars.com"
+		},
+		{
+			"name": "Michael Hester"
+		},
+		{
+			"name": "Arjun Kakkar"
+		}
+	],
 	"type": "module",
 	"scripts": {
 		"dev": "vite -c ./vite.config.ui.ts",
