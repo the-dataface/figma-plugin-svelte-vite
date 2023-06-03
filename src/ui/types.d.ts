@@ -1,6 +1,9 @@
 /// <reference types="svelte" />
 /// <reference types="vite/client" />
 
+import type { SvelteComponent } from 'svelte';
+import type { Writable } from 'svelte/store';
+
 declare global {
 	// general width/height dimensions
 	interface Size {
@@ -23,6 +26,11 @@ declare global {
 	}
 
 	type TabName = string;
+
+	interface App {
+		tabs: SvelteComponent[];
+		tab: Writable<TabName>;
+	}
 }
 
 export {};

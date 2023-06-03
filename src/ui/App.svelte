@@ -1,20 +1,23 @@
 <script lang="ts">
 	import type { SvelteComponent } from 'svelte';
+	import { setContext } from 'svelte';
+	import { writable } from 'svelte/store';
 
-	// multi-use components
 	import Message from '$ui/lib/components/Message.svelte';
-	import WindowResize from '$ui/lib/components/WindowResize.svelte';
+	import Rail from '$ui/furniture/Rail.svelte';
 
-	// singletons
-	import Footer from '$ui/furniture/Footer.svelte';
-	const tabComponents: SvelteComponent[] = Object.values(
+	export const tabs: SvelteComponent[] = Object.values(
 		import.meta.glob('./furniture/tabs/*.svelte', {
 			eager: true,
 		})
 	);
 
-	// the current active tab
-	let tab: TabName = tabComponents[0].name;
+	const tab = writable(tabs[0].name);
+
+	setContext('App', {
+		tabs,
+		tab,
+	});
 </script>
 
 <!-- example message. hook into the Message component to capture events + data -->
@@ -30,51 +33,13 @@
 
 <div class="w-full h-full flex flex-col flex-wrap">
 	<div class="flex-1 flex">
-		<div class="flex flex-col border-r border-foreground max-h-screen">
-			<header
-				class="text-center pl-3 py-3 pr-6 sticky top-0 inset-x-0 bg-background"
-			>
-				<h1 class="font-bold">Svelte + Vite + TypeScript</h1>
-				<!-- Navigation or Tab content. Useful for creating "panes" or "tabs" -->
-				<!-- <nav>		
-				</nav> -->
-			</header>
-
-			<nav
-				aria-label="Settings and navigation panes"
-				class="flex-1 overflow-y-auto"
-			>
-				<ul class="flex flex-col">
-					{#each tabComponents as component, i}
-						<li class="w-full" aria-current="true">
-							<input
-								class="sr-only peer"
-								type="radio"
-								name="tabs"
-								id="tab-{i}"
-								checked={i === 0}
-								value={component.name}
-								bind:group={tab}
-							/>
-							<label
-								class="block w-full p-3 cursor-pointer peer-focus:bg-gray-100 peer-hover:bg-gray-100 peer-checked:!bg-gray-200"
-								for="tab-{i}"
-							>
-								{component.name}
-							</label>
-						</li>
-					{/each}
-				</ul>
-			</nav>
-
-			<Footer />
-		</div>
-
+		<Rail />
 		<main class="flex-1 min-w-[320px] max-h-screen overflow-auto p-3">
-			{#each tabComponents as component}
-				<div class:hidden={tab !== component.name}>
+			{#each tabs as component}
+				<section class:hidden={$tab !== component.name}>
+					<h2 class="sr-only">{component.name}</h2>
 					<svelte:component this={component.default} />
-				</div>
+				</section>
 			{/each}
 		</main>
 	</div>
