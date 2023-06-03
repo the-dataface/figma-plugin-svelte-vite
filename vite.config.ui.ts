@@ -5,10 +5,7 @@ import { svelte, vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [
-		svelte({ preprocess: [vitePreprocess({ script: true, style: true })] }),
-		viteSingleFile(),
-	],
+	plugins: [svelte({ preprocess: [vitePreprocess()] }), viteSingleFile()],
 	root: path.resolve(__dirname, './src/ui'),
 	build: {
 		outDir: path.resolve(__dirname, './dist'),

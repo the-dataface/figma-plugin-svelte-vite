@@ -2,13 +2,16 @@
 export default {
 	content: ['./src/**/*.{html,js,ts,svelte}'],
 	theme: {
+		fontFamily: {
+			theme: 'var(--font-family)',
+		},
 		extend: {
 			colors: {
-				// THE DATAFACE COLORS
-				dataface: {
-					light: '#00CCB3',
-					DEFAULT: '#234C5E',
-				},
+				// BRAND COLORS
+				'accent-light': 'var(--accent-light)',
+				'accent-dark': 'var(--accent-dark)',
+				foreground: 'var(--foreground)',
+				background: 'var(--background)',
 			},
 		},
 	},
