@@ -11,7 +11,10 @@
 			Math.max(50, Math.floor(d + 5))
 		);
 
-		postMessage({ type: 'resize-window', size: { width, height } });
+		postMessage({
+			type: 'resize-window',
+			size: { width, height },
+		});
 	};
 </script>
 
@@ -24,7 +27,7 @@
 
 <button
 	id="resize"
-	class="flex h-full cursor-nwse-resize items-center justify-center overflow-hidden p-2 hover:text-accent-light active:text-accent-light"
+	class="flex h-full cursor-nwse-resize items-center justify-center overflow-hidden p-2 hover:text-accent-light active:text-accent-light active:scale-125 origin-bottom-right motion-safe:transition-transform"
 	on:mousedown={() => {
 		resizing = true;
 		window.addEventListener('mousemove', resizeWindow, true);
