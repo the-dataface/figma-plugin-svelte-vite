@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Maximize2Icon } from 'svelte-feather-icons';
+	import { ArrowUpLeftIcon } from 'svelte-feather-icons';
 	import { postMessage } from '$ui/lib/components/Message.svelte';
 
 	let resizing = false;
@@ -24,11 +24,11 @@
 
 <button
 	id="resize"
-	class="flex h-full cursor-nwse-resize items-center justify-center overflow-hidden border-l border-t border-foreground p-2 hover:text-accent-dark active:text-accent-dark focus:text-accent-dark hover:bg-gray-100 focus:bg-gray-100 active:bg-gray-100"
+	class="flex h-full cursor-nwse-resize items-center justify-center overflow-hidden p-2 hover:text-accent-light active:text-accent-light"
 	on:mousedown={() => {
 		resizing = true;
 		window.addEventListener('mousemove', resizeWindow, true);
 	}}
 >
-	<Maximize2Icon size="16" class="rotate-90" />
+	<ArrowUpLeftIcon size="16" class="" />
 </button>
