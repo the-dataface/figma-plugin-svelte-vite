@@ -14,7 +14,9 @@
 </script>
 
 <div role="contentinfo" class="relative flex border-t border-foreground">
-	<WindowResize />
+	<div class="fixed bottom-0 right-0">
+		<WindowResize />
+	</div>
 
 	<details
 		id="menu"
@@ -23,7 +25,7 @@
 		bind:open={isMenuOpen}
 	>
 		<summary
-			class="no-marker flex h-full w-full items-center justify-center border-x border-foreground p-2 hover:text-gray-600 active:text-gray-600"
+			class="no-marker flex h-full w-full items-center justify-center border-r border-foreground p-2 hover:text-gray-600 active:text-gray-600"
 		>
 			<XIcon size="16" class="hidden group-open:block" />
 			<InfoIcon size="16" class="block group-open:hidden" />

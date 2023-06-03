@@ -15,17 +15,20 @@
 	};
 </script>
 
-<button
-	id="resize"
-	class="flex h-full cursor-nesw-resize items-center justify-center overflow-hidden border-l border-solid border-foreground p-2 hover:text-accent-dark active:text-accent-dark focus:text-accent-dark hover:bg-gray-100 focus:bg-gray-100 active:bg-gray-100"
-	on:mousedown={() => {
-		resizing = true;
-		window.addEventListener('mousemove', resizeWindow, true);
-	}}
+<svelte:window
 	on:mouseup={() => {
 		resizing = false;
 		window.removeEventListener('mousemove', resizeWindow, true);
 	}}
+/>
+
+<button
+	id="resize"
+	class="flex h-full cursor-nwse-resize items-center justify-center overflow-hidden border-l border-t border-foreground p-2 hover:text-accent-dark active:text-accent-dark focus:text-accent-dark hover:bg-gray-100 focus:bg-gray-100 active:bg-gray-100"
+	on:mousedown={() => {
+		resizing = true;
+		window.addEventListener('mousemove', resizeWindow, true);
+	}}
 >
-	<Maximize2Icon size="16" class="rotate-0" />
+	<Maximize2Icon size="16" class="rotate-90" />
 </button>

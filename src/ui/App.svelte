@@ -1,9 +1,12 @@
 <script lang="ts">
 	import type { SvelteComponent } from 'svelte';
 
+	// multi-use components
 	import Message from '$ui/lib/components/Message.svelte';
-	import Footer from './furniture/Footer.svelte';
+	import WindowResize from '$ui/lib/components/WindowResize.svelte';
 
+	// singletons
+	import Footer from '$ui/furniture/Footer.svelte';
 	const tabComponents: SvelteComponent[] = Object.values(
 		import.meta.glob('./furniture/tabs/*.svelte', {
 			eager: true,
