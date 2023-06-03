@@ -28,7 +28,7 @@
 	<title>Svelte + Vite + TypeScript</title>
 </svelte:head>
 
-<div class="w-full h-full flex flex-col">
+<div class="w-full h-full flex flex-col flex-wrap">
 	<div class="flex-1 flex">
 		<div class="flex flex-col border-r border-foreground max-h-screen">
 			<header
@@ -70,7 +70,7 @@
 			<Footer />
 		</div>
 
-		<main class="flex-1 max-h-screen overflow-auto p-3">
+		<main class="flex-1 min-w-[320px] max-h-screen overflow-auto p-3">
 			{#each tabComponents as component}
 				<div class:hidden={tab !== component.name}>
 					<svelte:component this={component.default} />
