@@ -5,8 +5,10 @@
 @example ```<Message on:resize={(e) => { console.log('resize!', e.detail); }} />```
 -->
 <script lang="ts" context="module">
-	export const postMessage = (message: PostMessage) =>
-		parent.postMessage(message, '*');
+	export const postMessage = (message: MessageData) => {
+		parent.postMessage({ pluginMessage: message }, '*');
+		return;
+	};
 </script>
 
 <script lang="ts">
@@ -15,7 +17,7 @@
 	const dispatch = createEventDispatcher();
 
 	// receive messages
-	window.onmessage = async (event: MessageEvent<PostMessage>) => {
+	window.onmessage = async (event: MessageEvent<MessageData>) => {
 		// messages MUST have an associated 'type' to properly dispatch an event
 		if (!event.data.pluginMessage.type) return;
 

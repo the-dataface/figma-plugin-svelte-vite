@@ -8,11 +8,21 @@ declare global {
 		height: number;
 	}
 
-	// messaging between ui + plugin
-	interface PostMessage {
+	interface MessageData {
 		type: string;
 		[key: string]: any;
 	}
+
+	// messages from plugin to UI
+	interface MessageDataFromPlugin extends MessageData {
+		type: 'init';
+	}
+
+	interface MessageDataFromUI extends MessageData {
+		type: 'resize-window';
+	}
+
+	type TabName = string;
 }
 
 export {};

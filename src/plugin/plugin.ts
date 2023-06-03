@@ -7,6 +7,11 @@
 const isFigma = figma.editorType === 'figma';
 const isFigjam = figma.editorType === 'figjam';
 
+const figmaPostMessage = (message: MessageDataFromPlugin) => {
+	figma.ui.postMessage(message);
+	return;
+};
+
 /**
  * RECOMMENDED: ignore invisible nodes. speeds up document traversal
  * @see {@link https://www.figma.com/plugin-docs/api/properties/figma-skipinvisibleinstancechildren/|figma.skipInvisibleInstanceChildren}
@@ -19,4 +24,17 @@ figma.skipInvisibleInstanceChildren = true;
  */
 figma.showUI(__html__, { width: 560, height: 500, themeColors: true });
 
-figma.ui.postMessage({ type: 'load' });
+// plugin initialized
+figmaPostMessage({ type: 'init' });
+
+// message handle
+figma.ui.onmessage = (message: MessageDataFromUI) => {
+	if (!message.type) return;
+
+	switch (message.type) {
+		case 'resize-window': {
+			const { width = 560, height = 500 } = message.size;
+			return figma.ui.resize(width, height);
+		}
+	}
+};

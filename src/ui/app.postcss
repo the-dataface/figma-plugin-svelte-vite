@@ -10,8 +10,13 @@
 	--font-family: 'Inter', sans-serif;
 }
 
-body {
-	font-family: var(--font-family);
-	background-color: var(--background);
-	color: var(--foreground);
+/* DETAILS elements, used as nav panes */
+details > summary {
+	@apply list-none;
+}
+details > summary::-webkit-details-marker {
+	@apply hidden;
+}
+details > summary {
+	@apply cursor-pointer hover:bg-gray-100 focus:bg-gray-100 open:bg-gray-100;
 }

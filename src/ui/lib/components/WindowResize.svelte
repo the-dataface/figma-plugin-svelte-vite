@@ -11,13 +11,13 @@
 			Math.max(50, Math.floor(d + 5))
 		);
 
-		postMessage({ type: 'resize', size: { width, height } });
+		postMessage({ type: 'resize-window', size: { width, height } });
 	};
 </script>
 
-<div
+<button
 	id="resize"
-	class="flex h-full cursor-se-resize items-center justify-center overflow-hidden border-l border-solid border-figma-border p-2 text-figma-text hover:text-figma-text-secondary active:text-figma-text-tertiary"
+	class="flex h-full cursor-nesw-resize items-center justify-center overflow-hidden border-l border-solid border-foreground p-2 hover:text-accent-dark active:text-accent-dark focus:text-accent-dark hover:bg-gray-100 focus:bg-gray-100 active:bg-gray-100"
 	on:mousedown={() => {
 		resizing = true;
 		window.addEventListener('mousemove', resizeWindow, true);
@@ -27,5 +27,5 @@
 		window.removeEventListener('mousemove', resizeWindow, true);
 	}}
 >
-	<Maximize2Icon size="16" class="rotate-90" />
-</div>
+	<Maximize2Icon size="16" class="rotate-0" />
+</button>

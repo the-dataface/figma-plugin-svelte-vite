@@ -14,7 +14,7 @@
 </script>
 
 <a
-	class="group relative {classes}"
+	class="group relative overflow-hidden {classes}"
 	{href}
 	target="_blank"
 	rel="noreferrer"
@@ -33,8 +33,8 @@
 		{src}
 	/>
 	<div
-		class="absolute inset-0 flex h-full w-full translate-y-full items-center justify-center text-white transition-transform duration-300 ease-out group-hover:translate-y-0"
+		class="absolute inset-0 flex h-full w-full translate-y-full items-center justify-center text-white transition-transform motion-safe:duration-300 ease-out group-hover:translate-y-0"
 	>
-		<ExternalLinkIcon size={`${size.width / 3}`} />
+		<ExternalLinkIcon size={`${size.width / 2.5}`} />
 	</div>
 </a>
