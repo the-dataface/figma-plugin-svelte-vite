@@ -5,6 +5,11 @@ export default {
 		fontFamily: {
 			theme: 'var(--font-family)',
 		},
+		screens: {
+			sm: '500px',
+			md: '768px',
+			lg: '1024px',
+		},
 		extend: {
 			colors: {
 				// BRAND COLORS
