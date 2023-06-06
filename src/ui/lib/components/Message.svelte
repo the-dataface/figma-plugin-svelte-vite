@@ -9,6 +9,14 @@
 		parent.postMessage({ pluginMessage: message }, '*');
 		return;
 	};
+
+	export const notify = (
+		notification: string,
+		options: NotificationOptions = {}
+	) => {
+		postMessage({ type: 'notify', notification, options });
+		return;
+	};
 </script>
 
 <script lang="ts">

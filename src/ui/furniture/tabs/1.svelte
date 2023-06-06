@@ -1,8 +1,6 @@
 <script lang="ts" context="module">
-	import { BoxIcon } from 'svelte-feather-icons';
-
 	export const name: TabName = 'Tab #1';
-	export const icon: TabIcon = BoxIcon;
+	export const icon: TabIcon = 'adjust';
 </script>
 
 <script lang="ts">

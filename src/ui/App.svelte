@@ -5,6 +5,7 @@
 
 	import Message from '$ui/lib/components/Message.svelte';
 	import Rail from '$ui/furniture/Rail.svelte';
+	import Footer from './furniture/Footer.svelte';
 
 	export const tabs: SvelteComponent[] = Object.values(
 		import.meta.glob('./furniture/tabs/*.svelte', {

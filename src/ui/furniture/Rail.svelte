@@ -4,6 +4,10 @@
 
 	import Footer from '$ui/furniture/Footer.svelte';
 	import isSvelteComponent from '$ui/lib/utils/isSvelteComponent';
+	import isEmoji from '$ui/lib/utils/isEmoji';
+	import FigmaIcon, {
+		icons,
+	} from '$ui/lib/components/figma-icons/FigmaIcon.svelte';
 
 	const { tabs, tab } = getContext('App') as App;
 </script>
@@ -50,20 +54,19 @@
 						bind:group={$tab}
 					/>
 					<label
-						class="flex gap-x-1.5 flex-nowrap w-full p-3 cursor-pointer font-bold peer-focus:bg-gray-100 peer-hover:bg-gray-100 peer-checked:!bg-gray-200 {isActive
+						class="flex gap-x-1.5 flex-nowrap items-center w-full p-3 cursor-pointer font-bold peer-focus:bg-gray-100 peer-hover:bg-gray-100 peer-checked:!bg-gray-200 {isActive
 							? 'text-foreground'
 							: 'text-gray-500'}"
 						for="tab-{i}"
 					>
 						{#if component.icon}
-							<span class="grid place-content-center">
-								{#if isSvelteComponent(component.icon)}
-									<!-- typically a svelte-feather-icon -->
-									<svelte:component this={component.icon} size="16" />
-								{:else if typeof component.icon === 'string'}
-									{@html component.icon}
-								{/if}
-							</span>
+							{#if icons.has(component.icon)}
+								<FigmaIcon name={component.icon} />
+							{:else if isSvelteComponent(component.icon)}
+								<svelte:component this={component.icon} />
+							{:else if isEmoji(component.icon)}
+								<span>{@html component.icon}</span>
+							{/if}
 						{/if}
 						<span>
 							{component.name}

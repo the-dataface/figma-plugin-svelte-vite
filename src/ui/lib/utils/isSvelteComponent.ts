@@ -6,7 +6,9 @@
  * isSvelteComponent(MyComponent); // true
  */
 export default (possibleComponent: any): boolean => {
-	return possibleComponent && typeof window !== 'undefined'
+	return possibleComponent &&
+		typeof possibleComponent === 'function' &&
+		typeof window !== 'undefined'
 		? typeof possibleComponent.prototype.$destroy === 'function' // client-side
 		: typeof possibleComponent.render === 'function'; // server-side
 };

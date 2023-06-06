@@ -21,6 +21,8 @@
 		id="footer-menu"
 		class="mr-auto group flex h-full cursor-pointer select-none flex-nowrap items-center rounded-none bg-none text-2xs"
 		title="Menu"
+		use:outclick={() =>
+			document.getElementById('footer-menu')?.removeAttribute('open')}
 	>
 		<summary
 			class="no-marker flex h-full w-full items-center justify-center border-r border-foreground p-2 hover:text-gray-600 active:text-gray-600"
@@ -30,13 +32,9 @@
 		</summary>
 		<nav
 			aria-label="About the project"
-			class="menu-pane fixed left-2 bottom-10 flex flex-col rounded-lg border border-foreground overflow-hidden p-0 bg-background"
+			class="menu-pane fixed left-2 bottom-10 flex flex-col rounded-lg rounded-bl-none border border-foreground overflow-hidden p-0 bg-background"
 		>
-			<ul
-				class="divide-y divide-gray-400"
-				use:outclick={() =>
-					document.getElementById('footer-menu')?.removeAttribute('open')}
-			>
+			<ul class="divide-y divide-gray-400">
 				{#each [{ href: pkg.homepage, icon: HelpCircleIcon, text: 'About' }, { href: pkg.bugs.url, icon: AlertCircleIcon, text: 'Report Issue' }, { href: `${pkg.homepage}/blob/main/CHANGELOG.md`, icon: GitMergeIcon, text: `v${pkg.version}` }] as { href, icon, text }}
 					<li>
 						<a

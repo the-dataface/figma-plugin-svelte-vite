@@ -32,6 +32,13 @@ figma.ui.onmessage = (message: MessageDataFromUI) => {
 	if (!message.type) return;
 
 	switch (message.type) {
+		// use figma's built-in notification system
+		// https://www.figma.com/plugin-docs/api/properties/figma-notify/
+		case 'notify': {
+			const { type, notification, options } = message;
+			return figma.notify(notification as string, options);
+		}
+
 		case 'resize-window': {
 			const { width = 560, height = 500 } = message.size;
 			return figma.ui.resize(width, height);
