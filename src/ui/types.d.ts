@@ -26,6 +26,7 @@ declare global {
 	}
 
 	type TabName = string;
+	type TabIcon = typeof SvelteComponent | string;
 
 	interface App {
 		tabs: SvelteComponent[];

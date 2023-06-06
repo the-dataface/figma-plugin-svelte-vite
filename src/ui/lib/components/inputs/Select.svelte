@@ -53,12 +53,12 @@
 		background-repeat: no-repeat;
 		appearance: none;
 		-webkit-appearance: none;
-		&:hover,
-		&:focus {
-			@apply border-opacity-100 outline outline-2 outline-offset-2 outline-gray-50/20;
-		}
-		&.is-placeholder {
-			@apply text-gray-500;
-		}
+	}
+	select:hover,
+	select:focus {
+		@apply border-opacity-100 outline outline-2 outline-offset-2 outline-gray-50/20;
+	}
+	select.is-placeholder {
+		@apply text-gray-500;
 	}
 </style>

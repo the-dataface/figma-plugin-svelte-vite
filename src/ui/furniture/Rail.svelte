@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import { MenuIcon, XIcon } from 'svelte-feather-icons';
+
 	import Footer from '$ui/furniture/Footer.svelte';
+	import isSvelteComponent from '$ui/lib/utils/isSvelteComponent';
 
 	const { tabs, tab } = getContext('App') as App;
 </script>
@@ -47,10 +49,22 @@
 						bind:group={$tab}
 					/>
 					<label
-						class="block w-full p-3 cursor-pointer peer-focus:bg-gray-100 peer-hover:bg-gray-100 peer-checked:!bg-gray-200"
+						class="flex gap-x-1.5 flex-nowrap w-full p-3 cursor-pointer peer-focus:bg-gray-100 peer-hover:bg-gray-100 peer-checked:!bg-gray-200"
 						for="tab-{i}"
 					>
-						{component.name}
+						{#if component.icon}
+							<span class="grid place-content-center">
+								{#if isSvelteComponent(component.icon)}
+									<!-- typically a svelte-feather-icon -->
+									<svelte:component this={component.icon} size="16" />
+								{:else if typeof component.icon === 'string'}
+									{@html component.icon}
+								{/if}
+							</span>
+						{/if}
+						<span>
+							{component.name}
+						</span>
 					</label>
 				</li>
 			{/each}

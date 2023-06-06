@@ -1,7 +1,12 @@
 <script lang="ts" context="module">
-	import Select from '$ui/lib/components/inputs/Select.svelte';
+	import { BoxIcon } from 'svelte-feather-icons';
 
 	export const name: TabName = 'Tab #1';
+	export const icon: TabIcon = BoxIcon;
+</script>
+
+<script lang="ts">
+	import Select from '$ui/lib/components/inputs/Select.svelte';
 </script>
 
 <p>{name}</p>
