@@ -38,7 +38,8 @@
 	>
 		<ul class="flex flex-col">
 			{#each tabs as component, i}
-				<li class="w-full" aria-current="true">
+				{@const isActive = $tab === component.name}
+				<li class="w-full" aria-current={isActive ? 'true' : undefined}>
 					<input
 						class="sr-only peer"
 						type="radio"
@@ -49,7 +50,9 @@
 						bind:group={$tab}
 					/>
 					<label
-						class="flex gap-x-1.5 flex-nowrap w-full p-3 cursor-pointer peer-focus:bg-gray-100 peer-hover:bg-gray-100 peer-checked:!bg-gray-200"
+						class="flex gap-x-1.5 flex-nowrap w-full p-3 cursor-pointer font-bold peer-focus:bg-gray-100 peer-hover:bg-gray-100 peer-checked:!bg-gray-200 {isActive
+							? 'text-foreground'
+							: 'text-gray-500'}"
 						for="tab-{i}"
 					>
 						{#if component.icon}
