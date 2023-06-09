@@ -20,18 +20,21 @@
 	type="checkbox"
 />
 
-<div id="rail" class="flex flex-col border-foreground max-h-screen bg-gray-50">
+<div
+	id="rail"
+	class="flex flex-col border-figma-color-border max-h-screen bg-figma-color-bg text-figma-color-text"
+>
 	<label
 		id="menu-toggle-label"
 		for="menu-toggle"
-		class="fixed z-50 right-0 top-0 p-2 text-foreground active:text-accent-light hover:text-accent-light focus:text-accent-light"
+		class="fixed z-50 right-0 top-0 p-2 text-figma-color-text-secondary active:text-figma-color-text hover:text-figma-color-text focus:text-figma-color-text"
 	>
 		<span id="menu-opened-icon"><XIcon size="16" /></span>
 		<span id="menu-closed-icon"><MenuIcon size="16" /></span>
 	</label>
 
 	<header
-		class="text-center pl-3 py-3 pr-6 sticky top-0 inset-x-0 bg-background"
+		class="text-center pl-3 py-3 pr-6 sticky top-0 inset-x-0 border-b border-figma-color-border"
 	>
 		<h1 class="font-bold">Svelte + Vite + TypeScript</h1>
 	</header>
@@ -43,7 +46,10 @@
 		<ul class="flex flex-col">
 			{#each tabs as component, i}
 				{@const isActive = $tab === component.name}
-				<li class="w-full" aria-current={isActive ? 'true' : undefined}>
+				<li
+					class="w-full border-b border-figma-color-border"
+					aria-current={isActive ? 'true' : undefined}
+				>
 					<input
 						class="sr-only peer"
 						type="radio"
@@ -54,9 +60,9 @@
 						bind:group={$tab}
 					/>
 					<label
-						class="flex gap-x-1.5 flex-nowrap items-center w-full p-3 cursor-pointer font-bold peer-focus:bg-gray-100 peer-hover:bg-gray-100 peer-checked:!bg-gray-200 {isActive
-							? 'text-foreground'
-							: 'text-gray-500'}"
+						class="flex gap-x-1.5 flex-nowrap items-center w-full p-3 cursor-pointer font-bold peer-focus:bg-figma-color-bg-hover peer-hover:bg-figma-color-bg-hover peer-checked:!bg-figma-color-bg-secondary {isActive
+							? 'text-figma-color-text'
+							: 'text-figma-color-text-secondary'}"
 						for="tab-{i}"
 					>
 						{#if component.icon}

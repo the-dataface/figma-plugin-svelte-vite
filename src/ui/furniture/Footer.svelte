@@ -12,7 +12,10 @@
 	import outclick from '$ui/lib/actions/outclick';
 </script>
 
-<div role="contentinfo" class="relative flex border-t border-foreground">
+<div
+	role="contentinfo"
+	class="relative flex border-t border-figma-color-border bg-figma-color-bg"
+>
 	<div class="fixed bottom-0 right-0">
 		<WindowResize />
 	</div>
@@ -25,26 +28,30 @@
 			document.getElementById('footer-menu')?.removeAttribute('open')}
 	>
 		<summary
-			class="no-marker flex h-full w-full items-center justify-center border-r border-foreground p-2 hover:text-gray-600 active:text-gray-600"
+			class="no-marker flex h-full w-full items-center justify-center border-r border-figma-color-border p-2 hover:text-figma-color-text-hover active:text-figma-color-text-hover"
 		>
 			<XIcon size="16" class="hidden group-open:block" />
 			<InfoIcon size="16" class="block group-open:hidden" />
 		</summary>
 		<nav
 			aria-label="About the project"
-			class="menu-pane fixed left-2 bottom-10 flex flex-col rounded-lg rounded-bl-none border border-foreground overflow-hidden p-0 bg-background"
+			class="menu-pane fixed left-2 bottom-10 flex flex-col rounded-lg rounded-bl-none border border-figma-color-border overflow-hidden p-0 bg-figma-color-bg"
 		>
-			<ul class="divide-y divide-gray-400">
+			<ul class="divide-y divide-figma-color-border">
 				{#each [{ href: pkg.homepage, icon: HelpCircleIcon, text: 'About' }, { href: pkg.bugs.url, icon: AlertCircleIcon, text: 'Report Issue' }, { href: `${pkg.homepage}/blob/main/CHANGELOG.md`, icon: GitMergeIcon, text: `v${pkg.version}` }] as { href, icon, text }}
 					<li>
 						<a
-							class="flex items-center gap-2 py-2 px-3 text-sm hover:text-accent-dark active:text-accent-dark focus:text-accent-dark hover:underline"
+							class="flex items-center gap-2 py-2 px-3 text-sm hover:bg-figma-color-bg-hover focus:bg-figma-color-bg-hover hover:text-figma-color-text-hover active:text-figma-color-text-component-pressed focus:text-figma-color-text-hover hover:underline"
 							{href}
 							target="_blank"
 							rel="noreferrer"
 							title={text}
 						>
-							<svelte:component this={icon} size="18" class="fill-gray-50" />
+							<svelte:component
+								this={icon}
+								size="18"
+								class="fill-figma-color-bg text-figma-color-text"
+							/>
 							<span>{text}</span>
 						</a>
 					</li>

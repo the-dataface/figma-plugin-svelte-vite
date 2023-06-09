@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-	--accent-light: #00ccb3;
-	--accent-dark: #234c5e;
-	--foreground: ##27251f;
-	--background: #ffffff;
-	--font-family: 'Inter', sans-serif;
-}
-
 /* DETAILS elements, used as nav panes */
 details > summary {
 	@apply list-none;
@@ -18,7 +10,7 @@ details > summary::-webkit-details-marker {
 	@apply hidden;
 }
 details > summary {
-	@apply cursor-pointer hover:bg-gray-100 focus:bg-gray-100 open:bg-gray-100;
+	@apply cursor-pointer hover:bg-figma-color-bg-hover focus:bg-figma-color-bg-pressed open:bg-figma-color-bg-pressed;
 }
 
 label,

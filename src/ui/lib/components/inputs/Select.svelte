@@ -25,6 +25,7 @@
 <InputWrapper>
 	<slot />
 	<select
+		class="text-figma-color-text-"
 		{...attributes}
 		class:is-placeholder={placeholder && value === placeholderValue}
 		on:change
@@ -44,7 +45,7 @@
 
 <style lang="postcss">
 	select {
-		@apply border border-gray-300 border-opacity-0 bg-background text-foreground pr-10 font-normal text-sm rounded-none p-1;
+		@apply border border-figma-color-border border-opacity-0 bg-figma-color-bg text-figma-color-text pr-10 font-normal text-sm rounded-none p-1;
 		background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
 			linear-gradient(135deg, currentColor 50%, transparent 50%);
 		background-position: calc(100% - 20px) calc(1px + 50%),
@@ -56,9 +57,9 @@
 	}
 	select:hover,
 	select:focus {
-		@apply border-opacity-100 outline outline-2 outline-offset-2 outline-gray-50/20;
+		@apply border-opacity-100 outline outline-2 outline-offset-2 outline-figma-color-border;
 	}
 	select.is-placeholder {
-		@apply text-gray-500;
+		@apply text-figma-color-text-tertiary;
 	}
 </style>
