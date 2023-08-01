@@ -1,24 +1,56 @@
 <script lang="ts">
-	/** @description attributes of the element */
-	export let attributes: Record<string, string> = {};
+	import { createEventDispatcher } from 'svelte';
+	import { fly } from 'svelte/transition';
+	import { backOut } from 'svelte/easing';
+	import uid from '$ui/lib/utils/uid';
+	import Label from './Label.svelte';
 
-	/** @description checked value of the element */
-	export let checked: boolean | undefined = undefined;
+	interface $$Props extends svelteHTML.HTMLAttributes<HTMLLabelElement> {
+		label: string;
+		value: string;
+		checked: boolean;
+		id: string;
+	}
 
-	/** @description placeholder text */
-	export let label: string = '';
+	export let label: string;
+	export let value: string;
+	export let checked: boolean;
+	export let id = `checkbox-${uid()}`;
+
+	const dispatch = createEventDispatcher();
 </script>
 
-<label class="">
-	<input type="checkbox" {...attributes} bind:checked on:change />
-	<span>{label}</span>
-</label>
-
-<style lang="postcss">
-	label {
-	}
-	input {
-	}
-	span {
-	}
-</style>
+<div class="group container relative flex cursor-pointer items-center gap-2">
+	<input
+		class="peer absolute inset-0 h-full w-full cursor-pointer opacity-0"
+		type="checkbox"
+		{id}
+		bind:value
+		bind:checked
+		on:change
+		on:focus
+		on:blur
+		on:toggle={() => {
+			checked = !checked;
+			dispatch('toggle');
+		}}
+	/>
+	<div
+		class="checkmark pointer-events-none relative flex h-6 w-6 flex-shrink-0 flex-grow-0 items-center justify-center rounded border border-solid border-figma-border bg-figma-bg-danger peer-checked:bg-figma-bg-success"
+	>
+		{#key checked}
+			<span
+				class="absolute inset-0 flex h-full w-full items-center justify-center text-sm font-bold text-white"
+				in:fly={{ y: checked ? -2 : 2, duration: 300, easing: backOut }}
+			>
+				{@html checked ? '&check;' : '&cross;'}
+			</span>
+		{/key}
+	</div>
+	<label
+		for={id}
+		class="flex-grow cursor-pointer select-none pointer-events-none m-0 text-xs"
+	>
+		{label}
+	</label>
+</div>

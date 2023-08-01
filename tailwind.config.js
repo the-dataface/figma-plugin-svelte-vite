@@ -8,6 +8,7 @@ export default {
 			lg: '1024px',
 		},
 		colors: {
+			transparent: 'rgba(255,255,255,0)',
 			white: '#ffffff',
 			black: '#000000',
 			'figma-color-bg': 'var(--figma-color-bg)',
@@ -270,6 +271,11 @@ export default {
 				'var(--figma-color-text-warning-secondary)',
 			'figma-color-text-warning-tertiary':
 				'var(--figma-color-text-warning-tertiary)',
+		},
+		extend: {
+			spacing: {
+				icon: '14px',
+			},
 		},
 	},
 	plugins: [],

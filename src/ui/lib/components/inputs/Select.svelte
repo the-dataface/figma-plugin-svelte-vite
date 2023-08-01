@@ -1,65 +1,79 @@
 <script lang="ts">
-	import InputWrapper from './InputWrapper.svelte';
+	import uid from '$ui/lib/utils/uid';
+	import float from '$ui/lib/actions/float';
+	import Label from './Label.svelte';
+	import outclick from '$ui/lib/actions/outclick';
 
-	const placeholderValue = '-';
-	let selectElement: HTMLSelectElement | undefined;
-
-	/** @description attributes of the element */
-	export let attributes: Record<string, string> = {};
-
-	/** @description array of strings as the options */
-	export let options: string[] = [];
-
-	/** @description placeholder text */
-	export let placeholder: string | false = false;
-
-	/** @description value of the element */
-	export let value: string = placeholder ? placeholderValue : options[0];
-
-	export const clear = () => {
-		if (!(selectElement instanceof HTMLSelectElement)) return;
-		value = placeholder ? placeholderValue : options[0];
+	type SelectItem = {
+		id: string;
+		label: string;
+		value: unknown;
+		selected?: boolean;
+		group?: string;
 	};
+
+	export let id: string = `combobox-${uid()}`;
+
+	export let label: string = 'Dropdown';
+
+	export let items: SelectItem[] = [];
+
+	export let value: SelectItem | undefined = items.find((d) => d?.selected);
+
+	export let placeholder: string = 'Select';
+
+	export const clear = () => (value = undefined);
+
+	let listEl: HTMLUListElement;
+	let open = false;
 </script>
 
-<InputWrapper>
-	<slot />
-	<select
-		class="text-figma-color-text-"
-		{...attributes}
-		class:is-placeholder={placeholder && value === placeholderValue}
-		on:change
-		bind:value
-		bind:this={selectElement}
+<span class="inline-block" use:outclick={() => (open = false)}>
+	<Label
+		id="{id}-label"
+		on:click={() => {
+			open = !open;
+		}}
+		highlightOnFocus
 	>
-		{#if placeholder}
-			<option value="-" disabled selected={value === placeholderValue}>
-				{placeholder}
-			</option>
-		{/if}
-		{#each options as option (option)}
-			<option value={option}>{option}</option>
-		{/each}
-	</select>
-</InputWrapper>
+		<input
+			type="text"
+			{id}
+			value={value?.value || ''}
+			{placeholder}
+			role="combobox"
+			aria-controls="{id}-list"
+			aria-autocomplete="list"
+			aria-haspopup="listbox"
+			aria-expanded={open}
+			data-active-option="item1"
+			aria-activedescendant={value?.id || undefined}
+			readonly
+			class="outline-none"
+		/>
+		<span aria-hidden="true" data-trigger="multiselect" />
+	</Label>
 
-<style lang="postcss">
-	select {
-		@apply border border-figma-color-border border-opacity-0 bg-figma-color-bg text-figma-color-text pr-10 font-normal text-sm rounded-none p-1;
-		background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
-			linear-gradient(135deg, currentColor 50%, transparent 50%);
-		background-position: calc(100% - 20px) calc(1px + 50%),
-			calc(100% - 16px) calc(1px + 50%);
-		background-size: 4px 4px, 4px 4px;
-		background-repeat: no-repeat;
-		appearance: none;
-		-webkit-appearance: none;
-	}
-	select:hover,
-	select:focus {
-		@apply border-opacity-100 outline outline-2 outline-offset-2 outline-figma-color-border;
-	}
-	select.is-placeholder {
-		@apply text-figma-color-text-tertiary;
-	}
-</style>
+	<ul
+		id="{id}-list"
+		role="listbox"
+		aria-label={label}
+		class="bg-figma-color-bg-inverse text-figma-color-text-oninverse p-0 m-0"
+		use:float={{ target: `${id}-label`, hide: !open }}
+		bind:this={listEl}
+	>
+		{#each items as item (item.value)}
+			{@const isActive = item.value === value?.value}
+			<li
+				id={item.id}
+				role="option"
+				aria-selected={isActive}
+				class:active={isActive}
+				class="cursor-pointer"
+				on:click={() => (value = item)}
+			>
+				{@html item.label}
+			</li>
+		{/each}
+	</ul>
+</span>
