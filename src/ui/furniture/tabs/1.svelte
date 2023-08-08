@@ -33,6 +33,8 @@
 		<Radio />
 	</div>
 
+	<Checkbox id="checkbox-example" label="Checkbox" checked={true} />
+
 	<Input icon="angle" tooltip="Angle" format={formatAngle} bind:value />
 
 	<button
