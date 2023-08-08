@@ -5,6 +5,7 @@
 
 <script lang="ts">
 	import { formatAngle } from '$ui/lib/actions/formatinput';
+	import { notify } from '$ui/lib/components/Message.svelte';
 	import FigmaIcon from '$ui/lib/components/figma-icons/FigmaIcon.svelte';
 	import Checkbox from '$ui/lib/components/inputs/Checkbox.svelte';
 	import Input from '$ui/lib/components/inputs/Input.svelte';
@@ -18,13 +19,26 @@
 
 <p>{name}</p>
 
-<PositionGrid />
+<button
+	class="rounded-md bg-figma-color-bg-inverse text-figma-color-text-oninverse p-2 text-sm"
+	on:click={() => {
+		notify('hello world!');
+	}}
+>
+	Notification!
+</button>
 
-<Select
-	options={Array.from({ length: 6 }, (_, i) => `Option #${i}`)}
-	placeholder="Hello World"
-/>
+<div>
+	<PositionGrid />
+</div>
 
-<Radio />
+<div class="flex flex-row flex-wrap gap-1">
+	<Select
+		options={Array.from({ length: 6 }, (_, i) => `Option #${i}`)}
+		placeholder="Hello World"
+	/>
 
-<Input format={formatAngle} bind:value />
+	<Radio />
+</div>
+
+<Input icon="angle" tooltip="Angle" format={formatAngle} bind:value />
