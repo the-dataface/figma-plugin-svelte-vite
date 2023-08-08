@@ -39,38 +39,40 @@
 	let itemEls: HTMLLabelElement[] = [];
 </script>
 
-<fieldset
-	class="rounded-sm overflow-hidden inline-flex flex-row flex-nowrap border border-transparent hover:border-figma-color-bg-tertiary focus:border-figma-color-bg-tertiary group"
->
-	{#if label}
-		<legend class="sr-only">{label}</legend>
-	{/if}
+<div>
+	<fieldset
+		class="rounded-sm overflow-hidden inline-flex flex-row flex-nowrap border border-transparent hover:border-figma-color-bg-tertiary focus:border-figma-color-bg-tertiary group"
+	>
+		{#if label}
+			<legend class="sr-only">{label}</legend>
+		{/if}
 
-	{#each items as { icon, value: inputValue, ...inputAttributes }, i}
-		{@const isChecked = value === inputValue}
-		<div>
-			<label
-				class="group/label w-6 h-6 grid relative place-content-center leading-none {isChecked
-					? 'bg-figma-color-bg-tertiary rounded-sm group-hover:rounded-none group-focus:rounded-none'
-					: ''}"
-				aria-label={inputAttributes['aria-label']}
-				bind:this={itemEls[i]}
-				use:tooltip={{ content: inputAttributes['aria-label'] }}
-			>
-				<FigmaIcon name={icon} />
+		{#each items as { icon, value: inputValue, ...inputAttributes }, i}
+			{@const isChecked = value === inputValue}
+			<div>
+				<label
+					class="group/label w-6 h-6 grid relative place-content-center leading-none {isChecked
+						? 'bg-figma-color-bg-tertiary rounded-sm group-hover:rounded-none group-focus:rounded-none'
+						: ''}"
+					aria-label={inputAttributes['aria-label']}
+					bind:this={itemEls[i]}
+					use:tooltip={{ content: inputAttributes['aria-label'] }}
+				>
+					<FigmaIcon name={icon} />
 
-				<input
-					{...inputAttributes}
-					value={inputValue}
-					type="radio"
-					{name}
-					class:sr-only={true}
-					bind:group={value}
-				/>
-			</label>
-		</div>
-	{/each}
-</fieldset>
+					<input
+						{...inputAttributes}
+						value={inputValue}
+						type="radio"
+						{name}
+						class:sr-only={true}
+						bind:group={value}
+					/>
+				</label>
+			</div>
+		{/each}
+	</fieldset>
+</div>
 
 <style lang="postcss">
 </style>
