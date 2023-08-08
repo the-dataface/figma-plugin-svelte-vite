@@ -41,7 +41,7 @@
 
 	<nav
 		aria-label="Settings and navigation panes"
-		class="flex-1 overflow-y-auto"
+		class="flex-1 overflow-y-auto bg-figma-color-bg z-40"
 	>
 		<ul class="flex flex-col">
 			{#each tabs as component, i}

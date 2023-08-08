@@ -35,7 +35,7 @@
 		</summary>
 		<nav
 			aria-label="About the project"
-			class="menu-pane fixed left-2 bottom-10 flex flex-col rounded-lg rounded-bl-none border border-figma-color-border overflow-hidden p-0 bg-figma-color-bg"
+			class="menu-pane fixed z-50 left-2 bottom-10 flex flex-col rounded-lg rounded-bl-none border border-figma-color-border overflow-hidden p-0 bg-figma-color-bg"
 		>
 			<ul class="divide-y divide-figma-color-border">
 				{#each [{ href: pkg.homepage, icon: HelpCircleIcon, text: 'About' }, { href: pkg.bugs.url, icon: AlertCircleIcon, text: 'Report Issue' }, { href: `${pkg.homepage}/blob/main/CHANGELOG.md`, icon: GitMergeIcon, text: `v${pkg.version}` }] as { href, icon, text }}
