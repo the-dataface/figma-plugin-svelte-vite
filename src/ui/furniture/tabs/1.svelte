@@ -20,10 +20,6 @@
 
 <PositionGrid />
 
-<FigmaIcon name="layout-align-bottom" />
-<FigmaIcon name="layout-align-left" />
-<FigmaIcon name="layout-align-top" />
-
 <Select
 	options={Array.from({ length: 6 }, (_, i) => `Option #${i}`)}
 	placeholder="Hello World"

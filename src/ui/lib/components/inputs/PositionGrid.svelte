@@ -5,32 +5,32 @@
 			value: 'top-left',
 		},
 		{
-			label: 'Align top middle',
-			value: 'top-middle',
+			label: 'Align top center',
+			value: 'top-center',
 		},
 		{
 			label: 'Align top right',
 			value: 'top-right',
 		},
 		{
-			label: 'Align center left',
-			value: 'middle-left',
+			label: 'Align left',
+			value: 'center-left',
 		},
 		{
 			label: 'Align center',
-			value: 'middle-middle',
+			value: 'center-center',
 		},
 		{
-			label: 'Align center right',
-			value: 'middle-right',
+			label: 'Align right',
+			value: 'center-right',
 		},
 		{
 			label: 'Align bottom left',
 			value: 'bottom-left',
 		},
 		{
-			label: 'Align bottom middle',
-			value: 'bottom-middle',
+			label: 'Align bottom center',
+			value: 'bottom-center',
 		},
 		{
 			label: 'Align bottom right',
@@ -44,7 +44,7 @@
 <script lang="ts">
 	import tooltip from '$ui/lib/actions/tooltip';
 
-	export let value: GridPosition = 'middle-middle';
+	export let value: GridPosition = 'center-center';
 
 	let mouseover: GridPosition | undefined = undefined;
 </script>
@@ -80,7 +80,7 @@
 				<div
 					class="alignment-marker flex flex-col justify-between p-0.5 w-5 h-5 pointer-events-none"
 					class:items-start={x === 'left'}
-					class:items-center={x === 'middle'}
+					class:items-center={x === 'center'}
 					class:items-end={x === 'right'}
 				>
 					<div class="w-2.5 h-1 rounded-[1px] {bg}" />
