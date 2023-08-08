@@ -1,7 +1,7 @@
 {
 	"name": "figma-plugin-svelte-vite",
 	"private": true,
-	"version": "1.0.0-beta",
+	"version": "1.0.0",
 	"description": "Create Figma plugins with Svelte + Vite + TypeScript",
 	"homepage": "https://www.github.com/the-dataface/figma-plugin-svelte-vite",
 	"repository": {
