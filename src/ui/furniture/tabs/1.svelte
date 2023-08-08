@@ -9,7 +9,6 @@
 	import FigmaIcon from '$ui/lib/components/figma-icons/FigmaIcon.svelte';
 	import Checkbox from '$ui/lib/components/inputs/Checkbox.svelte';
 	import Input from '$ui/lib/components/inputs/Input.svelte';
-	import Label from '$ui/lib/components/inputs/Label.svelte';
 	import PositionGrid from '$ui/lib/components/inputs/PositionGrid.svelte';
 	import Radio from '$ui/lib/components/inputs/Radio.svelte';
 	import Select from '$ui/lib/components/inputs/Select.svelte';
@@ -27,7 +26,7 @@
 	<div class="flex flex-row flex-wrap gap-1">
 		<Select
 			options={Array.from({ length: 6 }, (_, i) => `Option #${i}`)}
-			placeholder="Hello World"
+			placeholder="Select value"
 		/>
 
 		<Radio />
