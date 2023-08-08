@@ -33,7 +33,7 @@
 
 <style lang="postcss">
 	.figma-icon.sm :global(svg) {
-		@apply w-8 h-8;
+		@apply w-6 h-6;
 	}
 	.figma-icon.md :global(svg) {
 		@apply w-8 h-8;

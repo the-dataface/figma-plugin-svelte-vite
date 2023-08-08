@@ -34,8 +34,4 @@
 	legend {
 		@apply flex flex-row gap-1.5 p-1.5 items-center w-fit border border-transparent hover:border-figma-color-bg-tertiary focus:border-figma-color-border-selected focus:outline focus:outline-figma-color-border-selected rounded-sm;
 	}
-
-	:where(label, legend).focus-highlight:focus-within {
-		@apply border-figma-color-border-selected ring-1 ring-figma-color-border-selected;
-	}
 </style>

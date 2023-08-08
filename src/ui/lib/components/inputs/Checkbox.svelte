@@ -3,7 +3,6 @@
 	import { fly } from 'svelte/transition';
 	import { backOut } from 'svelte/easing';
 	import uid from '$ui/lib/utils/uid';
-	import Label from './Label.svelte';
 
 	interface $$Props extends svelteHTML.HTMLAttributes<HTMLLabelElement> {
 		label: string;
