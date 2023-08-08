@@ -20,7 +20,6 @@ export default (
 	const updateValue = () => {
 		const { value } = node;
 		if (value === undefined) return;
-		node.dataset.value = value;
 		node.value = formatFunction(node);
 	};
 
@@ -38,11 +37,22 @@ export default (
 	};
 };
 
+// if the
+
 export const formatAngle = (node: HTMLInputElement) => {
-	console.log('b', node.value, node.dataset.value);
-	if (typeof node.dataset.value !== 'number' || isNaN(+node.dataset.value))
-		node.value = node.dataset.value ?? '0';
+	// default to 0 if the value is not a number
+	if (isNaN(+node.value)) {
+		node.dataset.value = `${0}`;
+		return `0°`;
+	} else if (+node.value > 360) {
+		node.dataset.value = `${360}`;
+		return `${360}°`;
+	} else if (+node.value < -360) {
+		node.dataset.value = `${-360}`;
+		return `${-360}°`;
+	}
 
 	// else return the new value with a degree symbol
+	node.dataset.value = node.value;
 	return `${node.value}°`;
 };
