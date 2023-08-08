@@ -1,11 +1,8 @@
 <script lang="ts">
-	import type { SvelteComponent } from 'svelte';
-	import { setContext } from 'svelte';
+	import { setContext, type SvelteComponent } from 'svelte';
 	import { writable } from 'svelte/store';
-
 	import Message from '$ui/lib/components/Message.svelte';
 	import Rail from '$ui/furniture/Rail.svelte';
-	import Footer from './furniture/Footer.svelte';
 
 	export const tabs: SvelteComponent[] = Object.values(
 		import.meta.glob('./furniture/tabs/*.svelte', {
