@@ -17,28 +17,31 @@
 	let value = 0;
 </script>
 
-<p>{name}</p>
+<div class="flex flex-col gap-2">
+	<p>{name}</p>
 
-<button
-	class="rounded-md bg-figma-color-bg-inverse text-figma-color-text-oninverse p-2 text-sm"
-	on:click={() => {
-		notify('hello world!');
-	}}
->
-	Notification!
-</button>
+	<div>
+		<PositionGrid />
+	</div>
 
-<div>
-	<PositionGrid />
+	<div class="flex flex-row flex-wrap gap-1">
+		<Select
+			options={Array.from({ length: 6 }, (_, i) => `Option #${i}`)}
+			placeholder="Hello World"
+		/>
+
+		<Radio />
+	</div>
+
+	<Input icon="angle" tooltip="Angle" format={formatAngle} bind:value />
+
+	<button
+		class="rounded-md bg-figma-color-bg-inverse text-figma-color-text-oninverse p-2 text-sm flex items-center justify-center"
+		on:click={() => {
+			notify('hello world!');
+		}}
+	>
+		<FigmaIcon name="alert" />
+		Notification!
+	</button>
 </div>
-
-<div class="flex flex-row flex-wrap gap-1">
-	<Select
-		options={Array.from({ length: 6 }, (_, i) => `Option #${i}`)}
-		placeholder="Hello World"
-	/>
-
-	<Radio />
-</div>
-
-<Input icon="angle" tooltip="Angle" format={formatAngle} bind:value />
