@@ -10,6 +10,15 @@
 	} from '$ui/lib/components/figma-icons/FigmaIcon.svelte';
 
 	const { tabs, tab } = getContext('App') as App;
+
+	let menuToggle: HTMLInputElement;
+
+	const closeMenu = () => {
+		if (!menuToggle) return;
+		menuToggle.checked = false;
+	};
+
+	$: $tab, closeMenu();
 </script>
 
 <input
@@ -18,6 +27,7 @@
 	title="Toggle menu"
 	class="sr-only peer"
 	type="checkbox"
+	bind:this={menuToggle}
 />
 
 <div
