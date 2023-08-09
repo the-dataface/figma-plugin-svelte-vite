@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import { resolve } from 'path';
-import figmaManifest from './figma.manifest';
+
+import figmaManifest from '../figma.manifest';
 
 export default function writeFigmaManifest() {
 	return {
