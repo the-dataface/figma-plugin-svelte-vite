@@ -3,6 +3,8 @@
 @name Message
 @description A component that send and handles postMessage events by dispatching events
 @example ```<Message on:resize={(e) => { console.log('resize!', e.detail); }} />```
+@example ```<Message on:init={(e) => { console.log('Plugin initialized!') }}```
+/>
 -->
 <script lang="ts" context="module">
 	export const postMessage = (message: MessageData) => {

@@ -2,25 +2,48 @@
 
 This is a boilerplate for building Figma plugins with Svelte, Vite, and TypeScript. To learn more about building plugins, see the [Figma Plugin API documentation](https://www.figma.com/plugin-docs/intro/)
 
-*Based on the great work of [figma-plugin-react-vite](https://github.com/CoconutGoodie/figma-plugin-react-vite)*
+_Based on the great work of [figma-plugin-react-vite](https://github.com/CoconutGoodie/figma-plugin-react-vite)_
 
-## Notes
+## Key Features
 
-- This boilerplate uses [Svelte](https://svelte.dev/) for the UI, [Vite](https://vitejs.dev/) for the build system, and [TypeScript](https://www.typescriptlang.org/) for type checking.
-- The plugin is built to the `build` folder, which is ignored by Git. This folder is what you upload to the Figma Developer Console when publishing your plugin.
+1. **_Tabular_**: Use as many tabs as needed to create a multi-tabbed UI. Create a new entry in `src/ui/furniture/tabs/` with an associated `name` and `icon` in the module context. It will be automatically added to the UI's nav bar.
+
+2. **_Common Code_**: Figma plugins with an interface are rendered using Figma-side code (code.ts on Figma docs) and sandboxed UI code (index.html on Figma docs). This template keeps the two sides separate (`src/ui` and `src/plugin`) but keeps common code available via `src/common`.
+
+3. **_Communicative_**: Plugin and UI code can communicate via postMessaging. This boilerplate has a built-in postMessage handler to send messages between the plugin and UI. (See /src/ui/lib/components/Message.svelte for code source and examples)
+
+4. **_Iterative_**: Configure your figma.manifest.ts credentials just once. Run `npm run build` and your plugin is ready to publish via your `/dist` folder!
+
+5. **_One File_**: Figma UI plugins accept only a single file each for Figma-side code (js) and UI-side code (html), which makes deployment of multiple files linked to each other impossible. This template is configured with [vite-single-file](https://www.npmjs.com/package/vite-plugin-singlefile) to bundle or inline files, imports, vectors and more.
+
+6. **_Figma's Icons_**: This boilerplate is configured with Figma's icon library for consistency and ease of use. Just use the `<FigmaIcon />` component to render an SVG icon from the library. (See /src/ui/lib/components/figma-icons/FigmaIcon.svelte for code source and examples)
+
+7. **_Tailwind-ready_**: This boilerplate is configured with [tailwindcss](https://tailwindcss.com/) and [postcss](https://postcss.org/) for out-of-the-box utilities and styling.
+
+## File Structure
+
+- src
+  - src/common/ : Sources that are intended to be used both by plugin and ui logical sides.
+  - src/plugin/ : Sources of the plugin logical side. Place everything that interracts with Figma here.
+  - src/ui/ : Sources of the ui logical side, a classical Vite + Svelte source base.
+- scripts
+  - scripts/vite/ : Some custom vite plugins to assist inlining assets
+- figma.manifest.ts - A module that exports Figma Plugin Manifest for the build scripts
 
 ## Getting started
 
 1. Clone this repository
 2. Install dependencies with `npm install`
-3. Run `npm run dev` to start the development server
-4. In Figma, go to `Plugins` > `Development` > `New Plugin...` and follow the prompts
-5. Copy the contents of `manifest.json` into the `figma.manifest.ts` file in this repository's root folder
-6. Run `npm run build` to build the plugin
-7. Reload the plugin in Figma to see your changes
-8. Run `npm run build` again to update the plugin
-9. To publish the plugin, run `npm run build` and upload the `build` folder to the Figma Developer Console
+3. In Figma, go to `Plugins` > `Development` > `New Plugin...` and follow the prompts
+4. Copy the contents of `manifest.json` into the `figma.manifest.ts` file in this repository's root folder
+5. Run `npm run build`to build the plugin. Do this every time you make changes to the plugin that you want to see reflected in Figma.
+6. To publish the plugin, run `npm run build` and upload the `/dist` folder to the Figma Developer Console
 
 ## Caveats
 
-- Images must be either inlined SVGs or be small enough to be inlined as data URIs. This is because Figma plugins are sandboxed and cannot load external resources.
+- Images must be either inlined SVGs or be small enough to be inlined as data URIs. Figma plugins are sandboxed and cannot load external resources, so assets must be inlined.
+
+## Notes
+
+- This boilerplate uses [Svelte](https://svelte.dev/) for the UI, [Vite](https://vitejs.dev/) for the build system, and [TypeScript](https://www.typescriptlang.org/) for type checking.
+- The plugin is built to the `/dist` folder, which is ignored by Git. This folder is what you upload to the Figma Developer Console when publishing your plugin.
