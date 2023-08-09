@@ -1,19 +1,12 @@
 import path from 'path';
 import { defineConfig } from 'vite';
-import generateFile from 'vite-plugin-generate-file';
 import { viteSingleFile } from 'vite-plugin-singlefile';
+import writeJSONOnBuild from './scripts/write-json-on-build';
 import figmaManifest from './figma.manifest';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [
-		viteSingleFile(),
-		generateFile({
-			type: 'json',
-			output: './manifest.json',
-			data: figmaManifest,
-		}),
-	],
+	plugins: [viteSingleFile(), writeJSONOnBuild(figmaManifest, 'manifest.json')],
 	build: {
 		lib: {
 			name: figmaManifest.name,
