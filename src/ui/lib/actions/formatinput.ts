@@ -37,8 +37,6 @@ export default (
 	};
 };
 
-// if the
-
 export const formatAngle = (node: HTMLInputElement) => {
 	// default to 0 if the value is not a number
 	if (isNaN(+node.value)) {
