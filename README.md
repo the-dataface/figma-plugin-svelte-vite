@@ -36,7 +36,7 @@ _Based on the great work of [figma-plugin-react-vite](https://github.com/Coconut
 2. Install dependencies with `npm install`
 3. In Figma, go to `Plugins` > `Development` > `New Plugin...` and follow the prompts
 4. Copy the contents of `manifest.json` into the `figma.manifest.ts` file in this repository's root folder
-5. Run `npm run build`to build the plugin. Do this every time you make changes to the plugin that you want to see reflected in Figma.
+5. Run `npm run dev`to build the plugin. This command will watch for changes and rebuild the plugin automatically, updating Figma's plugin instance with the changes.
 6. To publish the plugin, run `npm run build` and upload the `/dist` folder to the Figma Developer Console
 
 ## Caveats
