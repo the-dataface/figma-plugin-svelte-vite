@@ -1,12 +1,12 @@
 import path from 'path';
 import { defineConfig } from 'vite';
 import { viteSingleFile } from 'vite-plugin-singlefile';
-import writeJSONOnBuild from './scripts/write-json-on-build';
+import writeFigmaManifest from './scripts/write-figma-manifest';
 import figmaManifest from './figma.manifest';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [viteSingleFile(), writeJSONOnBuild(figmaManifest, 'manifest.json')],
+	plugins: [viteSingleFile(), writeFigmaManifest()],
 	build: {
 		lib: {
 			name: figmaManifest.name,
