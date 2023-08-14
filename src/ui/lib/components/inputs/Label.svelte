@@ -10,6 +10,8 @@
 		highlightOnFocus?: boolean;
 		/** tooltip content */
 		tooltip?: string | undefined;
+		/** is this label for a select? if so, tweak padding so dropdown is always visible */
+		isSelect?: boolean;
 	}
 
 	export let legend: $$Props['legend'] = false;
@@ -17,12 +19,15 @@
 	export let highlightOnFocus: $$Props['highlightOnFocus'] = false;
 
 	export let tooltip: $$Props['tooltip'] = undefined;
+
+	export let isSelect = false;
 </script>
 
 <svelte:element
 	this={legend ? 'legend' : 'label'}
 	{...$$restProps}
 	class:focus-highlight={highlightOnFocus}
+	class:select={isSelect}
 	on:click
 	use:tooltipAction={{ content: tooltip }}
 >
@@ -32,6 +37,13 @@
 <style lang="postcss">
 	label,
 	legend {
-		@apply flex flex-row gap-2 p-1.5 items-center w-fit border border-transparent hover:border-figma-color-bg-tertiary focus:border-figma-color-border-selected focus:outline focus:outline-figma-color-border-selected rounded-sm;
+		@apply flex flex-row gap-2 p-1.5 items-center w-fit border border-transparent rounded-sm focus-within:border-figma-color-border-selected;
+	}
+	:where(label, legend):not(:focus-within):hover {
+		@apply hover:border-figma-color-bg-tertiary;
+	}
+
+	:where(label, legend):not(.select) {
+		@apply p-1.5;
 	}
 </style>
