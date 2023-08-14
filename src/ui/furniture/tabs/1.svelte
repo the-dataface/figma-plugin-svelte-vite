@@ -34,7 +34,7 @@
 
 	<Checkbox id="checkbox-example" label="Checkbox" checked={true} />
 
-	<Input icon="angle" tooltip="Angle" format={formatAngle} bind:value />
+	<Input icon="alert" tooltip="Angle" format={formatAngle} bind:value />
 
 	<button
 		class="rounded-md bg-figma-color-bg-inverse text-figma-color-text-oninverse p-2 text-sm flex items-center justify-center"

@@ -32,6 +32,6 @@
 <style lang="postcss">
 	label,
 	legend {
-		@apply flex flex-row gap-1.5 p-1.5 items-center w-fit border border-transparent hover:border-figma-color-bg-tertiary focus:border-figma-color-border-selected focus:outline focus:outline-figma-color-border-selected rounded-sm;
+		@apply flex flex-row gap-2 p-1.5 items-center w-fit border border-transparent hover:border-figma-color-bg-tertiary focus:border-figma-color-border-selected focus:outline focus:outline-figma-color-border-selected rounded-sm;
 	}
 </style>

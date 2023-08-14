@@ -22,16 +22,27 @@
 
 	export let size: 'sm' | 'md' | 'lg' | 'xl' | false = false;
 
-	$: icon = iconModules[`./icons/${name}.svg`];
+	export let isLabelIcon: boolean = false;
+
+	$: icon = iconModules?.[`./icons/${name}.svg`] ?? name;
 </script>
 
-<span class="figma-icon {size || ''} {classes}">
+<span class="figma-icon {size || ''} {classes}" class:label-icon={isLabelIcon}>
 	{#if icon}
-		{@html icon}
+		<span>
+			{@html icon}
+		</span>
 	{/if}
 </span>
 
 <style lang="postcss">
+	.figma-icon {
+		@apply leading-none uppercase text-center grid place-content-center pointer-events-none;
+		font-size: 11px;
+	}
+	.figma-icon.label-icon {
+		@apply text-figma-color-text-secondary;
+	}
 	.figma-icon.sm :global(svg) {
 		@apply w-6 h-6;
 	}

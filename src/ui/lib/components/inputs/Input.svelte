@@ -20,7 +20,7 @@
 
 <Label class="h-7" {tooltip} highlightOnFocus>
 	{#if icon}
-		<FigmaIcon name={icon} class="max-w-[16px] -translate-x-1/2" />
+		<FigmaIcon name={icon} class="max-w-[16px]" size="sm" isLabelIcon />
 	{/if}
 	<input
 		class="bg-figma-color-bg text-figma-color-text font-normal text-[11px] leading-none rounded-none focus:ring-0 focus:outline-none"
