@@ -7,7 +7,7 @@ import type { Writable } from 'svelte/store';
 declare global {
 	type FigmaIconName =
 		// letters + numbers
-
+		| '-'
 		| 'A'
 		| 'B'
 		| 'C'
@@ -131,6 +131,18 @@ declare global {
 		| 'visible'
 		| 'warning-large'
 		| 'warning';
+
+	/** general select item */
+	interface SelectItem {
+		/** value of the item */
+		value: unknown;
+		/** optional label. if missing, label will be value */
+		label: string;
+		/** optional icon. if missing, no icon will be shown */
+		icon: FigmaIconName;
+		/** disable the item */
+		disabled?: boolean;
+	}
 
 	// general width/height dimensions
 	interface Size {

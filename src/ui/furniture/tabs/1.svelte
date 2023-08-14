@@ -25,16 +25,22 @@
 
 	<div class="flex flex-row flex-wrap gap-1">
 		<Select
-			options={Array.from({ length: 6 }, (_, i) => `Option #${i}`)}
-			placeholder="Select value"
+			options={Array.from({ length: 6 }, (_, i) => ({
+				label: `Option #${i}`,
+				value: i,
+				icon: ['alert', 'arrow-left-right', 'horizontal-padding', 'X', 'theme'][
+					i
+				],
+			}))}
+			placeholder={{ label: 'Select value', value: '-', icon: 'list' }}
 		/>
 
 		<Radio />
 	</div>
 
-	<Checkbox id="checkbox-example" label="Checkbox" checked={true} />
-
 	<Input icon="alert" tooltip="Angle" format={formatAngle} bind:value />
+
+	<Checkbox id="checkbox-example" label="Checkbox" checked={true} />
 
 	<button
 		class="rounded-md bg-figma-color-bg-inverse text-figma-color-text-oninverse p-2 text-sm flex items-center justify-center"
