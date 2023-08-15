@@ -29,10 +29,10 @@
 	import formatinput from '$ui/lib/actions/formatinput';
 
 	/** the color space to render. Dropdown options */
-	export let colorspace: Colorspace = 'hex';
+	export let colorspace: Colorspace = 'rgb';
 
 	/** fallback value if color is invalid */
-	const fallback: string = '#000000';
+	export let fallback: string = '#000000';
 
 	/** The color value as a string with opacity. ex: rgba(255,255,255,0.1), #ffffff */
 	export let value: string = fallback;
