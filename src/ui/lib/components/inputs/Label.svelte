@@ -26,6 +26,7 @@
 <svelte:element
 	this={legend ? 'legend' : 'label'}
 	{...$$restProps}
+	class:input-text={true}
 	class:focus-highlight={highlightOnFocus}
 	class:select={isSelect}
 	on:click
@@ -37,7 +38,7 @@
 <style lang="postcss">
 	label,
 	legend {
-		@apply flex flex-row gap-2 p-1.5 items-center w-fit border border-transparent rounded-sm focus-within:border-figma-color-border-selected;
+		@apply flex flex-row gap-2 items-center w-fit border border-transparent rounded-sm focus-within:border-figma-color-border-selected;
 	}
 	:where(label, legend):not(:focus-within):hover {
 		@apply hover:border-figma-color-bg-tertiary;

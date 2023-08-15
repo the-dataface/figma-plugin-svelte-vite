@@ -54,3 +54,15 @@ export const formatAngle = (node: HTMLInputElement) => {
 	node.dataset.value = node.value;
 	return `${node.value}°`;
 };
+
+export const formatPercent = (node: HTMLInputElement) => {
+	// default to 100 if the value is not a number
+	if (isNaN(+node.value)) {
+		node.dataset.value = `${100}`;
+		return `100%`;
+	}
+
+	// else return the new value with a percent symbol
+	node.dataset.value = node.value;
+	return `${node.value}%`;
+};

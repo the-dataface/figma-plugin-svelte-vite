@@ -12,12 +12,15 @@
 	import PositionGrid from '$ui/lib/components/inputs/PositionGrid.svelte';
 	import Radio from '$ui/lib/components/inputs/Radio.svelte';
 	import Select from '$ui/lib/components/inputs/Select.svelte';
+	import ColorPicker from '$ui/lib/components/inputs/ColorPicker.svelte';
 
 	let value = 0;
 </script>
 
 <div class="flex flex-col gap-2">
 	<p>{name}</p>
+
+	<ColorPicker />
 
 	<div>
 		<PositionGrid />
