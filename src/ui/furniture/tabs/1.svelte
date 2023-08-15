@@ -15,12 +15,15 @@
 	import ColorPicker from '$ui/lib/components/inputs/ColorPicker.svelte';
 
 	let value = 0;
+
+	let colorpickerValue = '#ff0000';
+	$: console.log(colorpickerValue);
 </script>
 
 <div class="flex flex-col gap-2">
 	<p>{name}</p>
 
-	<ColorPicker />
+	<ColorPicker fallback="#ff0000" bind:value={colorpickerValue} />
 
 	<div>
 		<PositionGrid />
