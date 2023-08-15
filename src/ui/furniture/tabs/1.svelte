@@ -8,6 +8,7 @@
 	import { notify } from '$ui/lib/components/Message.svelte';
 	import FigmaIcon from '$ui/lib/components/figma-icons/FigmaIcon.svelte';
 	import Checkbox from '$ui/lib/components/inputs/Checkbox.svelte';
+	import ColorPicker from '$ui/lib/components/inputs/color-picker/ColorPicker.svelte';
 	import Input from '$ui/lib/components/inputs/Input.svelte';
 	import PositionGrid from '$ui/lib/components/inputs/PositionGrid.svelte';
 	import Radio from '$ui/lib/components/inputs/Radio.svelte';
@@ -22,6 +23,8 @@
 	<div>
 		<PositionGrid />
 	</div>
+
+	<ColorPicker />
 
 	<div class="flex flex-row flex-wrap gap-1">
 		<Select
