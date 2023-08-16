@@ -5,8 +5,10 @@
 	import type { HTMLInputAttributes } from 'svelte/elements';
 
 	interface RadioItem extends HTMLInputAttributes {
-		/** figma svg icon */
 		icon: FigmaIconName;
+		value: unknown;
+		checked?: boolean;
+		id: string;
 		/** a text description of the input. Required for a11y */
 		'aria-label': string;
 	}
