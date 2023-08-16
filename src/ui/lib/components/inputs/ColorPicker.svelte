@@ -67,6 +67,10 @@
 	const changeColorPicker = (e: Event) => {
 		const node = e.target as HTMLInputElement;
 		const parsed = parseColor(node.value, fallback);
+
+		// preserve opacity
+		if (parsed) parsed.opacity = $color?.opacity || 1;
+
 		color.set(parsed);
 		return $color?.formatHex() || fallback;
 	};
