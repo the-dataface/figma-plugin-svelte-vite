@@ -105,13 +105,13 @@
 >
 	<label class="shrink-0 grow-0 pl-1.5 py-1.5">
 		<div
-			class="w-4 h-4 relative"
+			class="relative w-4 h-4"
 			style:background-color={$color?.copy({ opacity: 1 })?.formatRgb() ||
 				fallback}
 		>
 			{#if $color && $color.opacity < 1}
 				<div
-					class="pointer-events-none w-1/2 h-full absolute right-0 inset-y-0"
+					class="absolute inset-y-0 right-0 w-1/2 h-full pointer-events-none"
 					style:opacity={1 - $color.opacity}
 					style:background="url(data:image/svg+xml;utf8,%3Csvg%20width%3D%226%22%20height%3D%226%22%20viewBox%3D%220%200%206%206%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200H3V3H0V0Z%22%20fill%3D%22%23E1E1E1%22/%3E%3Cpath%20d%3D%22M3%200H6V3H3V0Z%22%20fill%3D%22white%22/%3E%3Cpath%20d%3D%22M3%203H6V6H3V3Z%22%20fill%3D%22%23E1E1E1%22/%3E%3Cpath%20d%3D%22M0%203H3V6H0V3Z%22%20fill%3D%22white%22/%3E%3C/svg%3E%0A)"
 				/>
@@ -132,7 +132,7 @@
 	<label class="h-7 flex-1 p-1.5 flex flex-row flex-nowrap">
 		<span class="sr-only">Color</span>
 		<input
-			class="border-0 outline-none ring-0 flex-[1_0_72px]"
+			class="bg-figma-color-bg text-figma-color-text border-0 outline-none ring-0 flex-[1_0_72px]"
 			type="text"
 			name="color"
 			value={colorValue}
@@ -147,7 +147,7 @@
 	>
 		<span class="sr-only">Opacity</span>
 		<input
-			class="border-0 outline-none ring-0 w-full text-center"
+			class="w-full text-center border-0 outline-none bg-figma-color-bg text-figma-color-text ring-0"
 			type="text"
 			name="opacity"
 			value={opacityValue}
