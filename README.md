@@ -33,7 +33,7 @@ _Based on the great work of [figma-plugin-react-vite](https://github.com/Coconut
 ## Getting started
 
 1. Clone this repository
-2. Update package.json with the appropriate plugin name, description, author, links and other metadata.
+2. Update `package.json` with the appropriate plugin name, description, author, links and other metadata.
 3. Install dependencies with `npm install`
 4. In Figma, go to `Plugins` > `Development` > `New Plugin...` and follow the prompts
 5. Copy the contents of `manifest.json` into the `figma.manifest.ts` file in this repository's root folder
