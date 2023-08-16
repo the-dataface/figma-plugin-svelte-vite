@@ -43,6 +43,7 @@
 	<select
 		placeholder={placeholder?.label ?? undefined}
 		{...attributes}
+		class:w-full={true}
 		class:input-text={true}
 		class:is-placeholder={value === placeholder}
 		on:change

@@ -14,47 +14,78 @@
 	import Select from '$ui/lib/components/inputs/Select.svelte';
 	import ColorPicker from '$ui/lib/components/inputs/ColorPicker.svelte';
 
-	let value = 0;
-
+	let angleValue = 0;
 	let colorpickerValue = '#ff0000';
-	$: console.log(colorpickerValue);
+
+	const selectOptions = [
+		{
+			label: 'Option #1',
+			value: 1,
+			icon: 'alert',
+		},
+		{
+			label: 'Option #2',
+			value: 2,
+			icon: 'X',
+		},
+		{
+			label: 'Option #3',
+			value: 3,
+			icon: 'arrow-left-right',
+		},
+	] as SelectItem[];
 </script>
 
 <div class="flex flex-col gap-2">
 	<p>{name}</p>
 
-	<ColorPicker fallback="#ff0000" bind:value={colorpickerValue} />
-
-	<div>
-		<PositionGrid />
-	</div>
-
-	<div class="flex flex-row flex-wrap gap-1">
-		<Select
-			options={Array.from({ length: 6 }, (_, i) => ({
-				label: `Option #${i}`,
-				value: i,
-				icon: ['alert', 'arrow-left-right', 'horizontal-padding', 'X', 'theme'][
-					i
-				],
-			}))}
-			placeholder={{ label: 'Select value', value: '-', icon: 'list' }}
+	<div class="grid grid-cols-2 gap-2">
+		<div class="col-span-full flex flex-row flex-nowrap items-center gap-2">
+			<ColorPicker fallback="#ff00ff" bind:value={colorpickerValue} />
+			<Radio
+				items={[
+					{
+						icon: 'visible',
+						'aria-label': 'visible',
+						id: 'color-visible',
+						value: true,
+					},
+					{
+						icon: 'minus',
+						'aria-label': 'hidden',
+						id: 'color-hidden',
+						value: false,
+					},
+				]}
+				value={undefined}
+			/>
+		</div>
+		<Input
+			icon="alert"
+			tooltip="Angle"
+			format={formatAngle}
+			bind:value={angleValue}
 		/>
-
-		<Radio />
+		<div class="w-full">
+			<Select
+				options={selectOptions}
+				placeholder={{ label: 'Select value', value: '-', icon: 'list' }}
+			/>
+		</div>
+		<Checkbox id="checkbox-example" label="Checkbox" checked={true} />
 	</div>
 
-	<Input icon="alert" tooltip="Angle" format={formatAngle} bind:value />
+	<div class="grid grid-cols-2">
+		<PositionGrid />
 
-	<Checkbox id="checkbox-example" label="Checkbox" checked={true} />
-
-	<button
-		class="rounded-md bg-figma-color-bg-inverse text-figma-color-text-oninverse p-2 text-sm flex items-center justify-center"
-		on:click={() => {
-			notify('hello world!');
-		}}
-	>
-		<FigmaIcon name="alert" />
-		Notification!
-	</button>
+		<button
+			class="rounded-md bg-figma-color-bg-inverse text-figma-color-text-oninverse p-2 text-sm flex items-center justify-center"
+			on:click={() => {
+				notify('hello world!');
+			}}
+		>
+			<FigmaIcon name="alert" />
+			Notification!
+		</button>
+	</div>
 </div>

@@ -35,7 +35,7 @@
 		},
 	];
 
-	export let value: RadioItem | undefined =
+	export let value: unknown | undefined =
 		items.find((d) => d.checked === true)?.value || items[0]?.value;
 
 	let itemEls: HTMLLabelElement[] = [];
