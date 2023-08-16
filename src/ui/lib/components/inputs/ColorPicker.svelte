@@ -57,7 +57,7 @@
 
 	$: colorPickerValue = $color?.formatHex() || fallback;
 	$: colorValue = ($color?.formatHex() || fallback).slice(1).toUpperCase();
-	$: opacityValue = toHundredths($color?.opacity || 1);
+	$: opacityValue = `${toHundredths($color?.opacity || 1)}%`;
 
 	/**
 	 * Update color object when inputs change
@@ -101,7 +101,7 @@
 </script>
 
 <div
-	class="inline-flex flex-row items-center w-fit border border-transparent rounded-sm focus-within:border-figma-color-border-selected focus-highlight input-text group"
+	class="flex flex-row items-center w-fit border border-transparent rounded-sm focus-within:border-figma-color-border-selected focus-highlight input-text group"
 >
 	<label class="shrink-0 grow-0 pl-1.5 py-1.5">
 		<div
