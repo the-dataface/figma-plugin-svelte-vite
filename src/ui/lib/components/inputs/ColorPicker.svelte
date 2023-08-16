@@ -66,13 +66,15 @@
 
 	const changeColorPicker = (e: Event) => {
 		const node = e.target as HTMLInputElement;
+
+		// get new value
 		const parsed = parseColor(node.value, fallback);
 
 		// preserve opacity
 		if (parsed) parsed.opacity = $color?.opacity || 1;
 
+		// update color object
 		color.set(parsed);
-		return $color?.formatHex() || fallback;
 	};
 
 	const changeColor = (e: Event) => {
@@ -89,13 +91,6 @@
 
 		// update the exported value
 		value = formatted;
-
-		// and serve it to the UI as HEX without hash, ex 000000, FF00FF
-		const hex = (parsed || d3color?.color(fallback))?.formatHex();
-		const hashless = (hex || fallback)?.replace(/^#/, '') || fallback;
-		const uppercased = hashless.toUpperCase();
-
-		return uppercased;
 	};
 
 	const changeOpacity = (e: Event) => {
@@ -103,7 +98,7 @@
 
 		const node = e.target as HTMLInputElement;
 
-		// default to 1 if the value is not a number
+		// clamp values to 0-100
 		if (isNaN(+node.value) || +node.value >= 100) {
 			$color.opacity = 1;
 			return `100%`;
@@ -112,9 +107,8 @@
 			return `0%`;
 		}
 
-		// else return the new value with a percent symbol
+		// else normalize into 0-1 range
 		$color.opacity = +node.value / 100;
-		return `${Math.round(+node.value)}%`;
 	};
 </script>
 
