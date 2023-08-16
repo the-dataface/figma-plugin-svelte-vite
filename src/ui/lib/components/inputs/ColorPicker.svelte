@@ -13,11 +13,14 @@
 		/** the `<input type='text'>` opacity input */
 		| 'opacity';
 
+	/** fallback HEX value if color is invalid */
+	const fallback: string = '#000000';
+
 	/** Check if the given value is a valid color */
 	export const valid = (value: string): boolean => !!d3color.color(value);
 
 	/** try to parse a color in as many ways as possible, with a fallback */
-	const parseColor = (value: string, fallback = '#000000'): NonNullColor => {
+	const parseColor = (value: string): NonNullColor => {
 		return (d3color.color(value) ??
 			d3color.color(`#${value}`) ??
 			d3color.color(fallback)) as NonNullColor;
@@ -36,9 +39,6 @@
 
 <script lang="ts">
 	import { writable, type Writable } from 'svelte/store';
-
-	/** fallback HEX value if color is invalid */
-	export let fallback: string = '#000000';
 
 	/** The color value as a string with opacity. ex: rgba(255,255,255,0.1), #ffffff */
 	export let value: string = fallback;
@@ -69,7 +69,7 @@
 			case 'picker':
 			case 'color': {
 				// get new value or use fallback
-				const parsed = parseColor(node.value, fallback);
+				const parsed = parseColor(node.value);
 
 				// preserve opacity if using picker, which doesn't support opacity
 				if (type === 'picker') parsed.opacity = $color?.opacity || 1;

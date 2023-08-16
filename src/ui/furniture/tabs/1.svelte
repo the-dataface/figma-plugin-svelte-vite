@@ -41,7 +41,7 @@
 
 	<div class="grid grid-cols-2 gap-2">
 		<div class="col-span-full flex flex-row flex-nowrap items-center gap-2">
-			<ColorPicker fallback="#ff00ff" bind:value={colorpickerValue} />
+			<ColorPicker bind:value={colorpickerValue} />
 			<Radio
 				items={[
 					{
