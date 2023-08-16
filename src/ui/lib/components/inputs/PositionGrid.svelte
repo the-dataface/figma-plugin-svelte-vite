@@ -88,7 +88,9 @@
 					<div class="w-[7px] h-1 rounded-[1px] {bg}" />
 				</div>
 			{:else}
-				<div class="w-px h-px bg-black rounded-full pointer-events-none" />
+				<div
+					class="w-0.5 h-0.5 bg-figma-color-icon-tertiary rounded-full pointer-events-none"
+				/>
 			{/if}
 		</label>
 	{/each}
