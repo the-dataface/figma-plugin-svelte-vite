@@ -14,16 +14,36 @@
 		| 'opacity';
 
 	/** fallback HEX value if color is invalid */
-	const fallback: string = '#000000';
+	const fallback = d3color.color('#000000');
 
 	/** Check if the given value is a valid color */
 	export const valid = (value: string): boolean => !!d3color.color(value);
 
 	/** try to parse a color in as many ways as possible, with a fallback */
 	const parseColor = (value: string): NonNullColor => {
-		return (d3color.color(value) ??
-			d3color.color(`#${value}`) ??
-			d3color.color(fallback)) as NonNullColor;
+		// first try the color as-is
+		const asIs = d3color.color(value);
+		if (asIs) return asIs;
+
+		// then see if it just needs a hash as-is
+		const withHash = d3color.color(`#${value}`);
+		if (withHash) return withHash;
+
+		// then see if its a shortened hex value sans hash
+		if ((!value.startsWith('#') && value.length === 1) || value.length === 2) {
+			const withHash = d3color.color(`#${value}${value}${value}`);
+			if (withHash) return withHash;
+		}
+
+		// or if its a shortened hex value with hash
+		if (value.startsWith('#') && (value.length === 2 || value.length === 3)) {
+			const noHash = value.slice(1);
+			const withHash = d3color.color(`#${noHash}${noHash}${noHash}`);
+			if (withHash) return withHash;
+		}
+
+		// lastly, revert to the fallback
+		return fallback as NonNullColor;
 	};
 
 	/** Select all text in the input on focus */
@@ -41,22 +61,22 @@
 	import { writable, type Writable } from 'svelte/store';
 
 	/** The color value as a string with opacity. ex: rgba(255,255,255,0.1), #ffffff */
-	export let value: string = fallback;
+	export let value: string = fallback?.formatRgb() ?? '#000000';
 
 	/** the color factory instance, including opacity and conversion options */
 	export let color: Writable<d3color.RGBColor | d3color.HSLColor | null> =
-		writable(d3color?.color(value) || d3color?.color(fallback));
+		writable(d3color?.color(value) || fallback);
 
 	// dynamically update value string whenever color changes
-	$: if ($color) value = $color?.formatRgb() || fallback;
+	$: if ($color) value = ($color ?? fallback)?.formatRgb();
 
 	$: if ($color) {
 		if ($color.opacity > 1) $color.opacity = 1;
 		else if ($color.opacity < 0) $color.opacity = 0;
 	}
 
-	$: colorPickerValue = $color?.formatHex() || fallback;
-	$: colorValue = ($color?.formatHex() || fallback).slice(1).toUpperCase();
+	$: colorPickerValue = ($color ?? fallback)?.formatHex();
+	$: colorValue = ($color ?? fallback)?.formatHex().slice(1).toUpperCase();
 	$: opacityValue = `${toHundredths($color?.opacity || 1)}%`;
 
 	/**
@@ -106,8 +126,9 @@
 	<label class="shrink-0 grow-0 pl-1.5 py-1.5">
 		<div
 			class="relative w-4 h-4"
-			style:background-color={$color?.copy({ opacity: 1 })?.formatRgb() ||
-				fallback}
+			style:background-color={(
+				$color?.copy({ opacity: 1 }) ?? fallback
+			)?.formatRgb()}
 		>
 			{#if $color && $color.opacity < 1}
 				<div
