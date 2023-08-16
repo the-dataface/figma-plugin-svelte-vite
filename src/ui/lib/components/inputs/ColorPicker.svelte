@@ -1,25 +1,26 @@
 <script context="module" lang="ts">
 	import * as d3color from 'd3-color';
 
-	/** Colorspaces supported in UI */
-	const colorspaces = {
-		hex: { format: 'formatHex', parse: 'hex' },
-		hsl: { format: 'formatHsl', parse: 'hsl' },
-		rgb: { format: 'formatRgb', parse: 'rgb' },
-	} as const;
+	/** A d3color.color() instance that we know can not be null as there is a fallback */
+	type NonNullColor = Exclude<d3color.RGBColor | d3color.HSLColor, null>;
 
-	export type Colorspace = keyof typeof colorspaces;
+	/** The type of input that changed */
+	type ColorInputs =
+		/** the native `<input type="color"/> selector */
+		| 'picker'
+		/** the `<input type='text'>` hex input, accepts and passes any entry to d3color.color() */
+		| 'color'
+		/** the `<input type='text'>` opacity input */
+		| 'opacity';
 
 	/** Check if the given value is a valid color */
 	export const valid = (value: string): boolean => !!d3color.color(value);
 
 	/** try to parse a color in as many ways as possible, with a fallback */
-	const parseColor = (
-		value: string,
-		fallback = '#000000'
-	): d3color.RGBColor | d3color.HSLColor | null => {
-		if (valid(value)) return d3color.color(value);
-		else return d3color.color(`#${value}`) ?? d3color.color(fallback);
+	const parseColor = (value: string, fallback = '#000000'): NonNullColor => {
+		return (d3color.color(value) ??
+			d3color.color(`#${value}`) ??
+			d3color.color(fallback)) as NonNullColor;
 	};
 
 	/** Select all text in the input on focus */
@@ -36,9 +37,6 @@
 <script lang="ts">
 	import { writable, type Writable } from 'svelte/store';
 
-	/** the color space to render. Dropdown options */
-	export let colorspace: Colorspace = 'rgb';
-
 	/** fallback HEX value if color is invalid */
 	export let fallback: string = '#000000';
 
@@ -49,11 +47,8 @@
 	export let color: Writable<d3color.RGBColor | d3color.HSLColor | null> =
 		writable(d3color?.color(value) || d3color?.color(fallback));
 
-	//  the chosen colorspace
-	$: activeColorspace = colorspaces[colorspace].format;
-
 	// dynamically update value string whenever color changes
-	$: if ($color) value = $color?.[activeColorspace]() || fallback;
+	$: if ($color) value = $color?.formatRgb() || fallback;
 
 	$: if ($color) {
 		if ($color.opacity > 1) $color.opacity = 1;
@@ -64,51 +59,44 @@
 	$: colorValue = ($color?.formatHex() || fallback).slice(1).toUpperCase();
 	$: opacityValue = toHundredths($color?.opacity || 1);
 
-	const changeColorPicker = (e: Event) => {
+	/**
+	 * Update color object when inputs change
+	 */
+	const onChange = (type: ColorInputs) => (e: Event) => {
 		const node = e.target as HTMLInputElement;
 
-		// get new value
-		const parsed = parseColor(node.value, fallback);
+		switch (type) {
+			case 'picker':
+			case 'color': {
+				// get new value or use fallback
+				const parsed = parseColor(node.value, fallback);
 
-		// preserve opacity
-		if (parsed) parsed.opacity = $color?.opacity || 1;
+				// preserve opacity if using picker, which doesn't support opacity
+				if (type === 'picker') parsed.opacity = $color?.opacity || 1;
 
-		// update color object
-		color.set(parsed);
-	};
+				// update color object
+				color.set(parsed);
 
-	const changeColor = (e: Event) => {
-		const node = e.target as HTMLInputElement;
+				break;
+			}
 
-		// if invalid, try parsing as hex without hash
-		const parsed = parseColor(node.value, fallback);
+			case 'opacity': {
+				if (!$color) break;
 
-		// update color object
-		color.set(parsed);
+				// clamp values to 0-100
+				if (isNaN(+node.value) || +node.value >= 100) {
+					$color.opacity = 1;
+					return `100%`;
+				} else if (+node.value <= 0) {
+					$color.opacity = 0;
+					return `0%`;
+				}
 
-		// then format it into the active colorspace, or default to fallback
-		const formatted = parsed?.[activeColorspace]() || fallback;
-
-		// update the exported value
-		value = formatted;
-	};
-
-	const changeOpacity = (e: Event) => {
-		if (!$color) return `100%`;
-
-		const node = e.target as HTMLInputElement;
-
-		// clamp values to 0-100
-		if (isNaN(+node.value) || +node.value >= 100) {
-			$color.opacity = 1;
-			return `100%`;
-		} else if (+node.value <= 0) {
-			$color.opacity = 0;
-			return `0%`;
+				// else normalize into 0-1 range
+				$color.opacity = +node.value / 100;
+				break;
+			}
 		}
-
-		// else normalize into 0-1 range
-		$color.opacity = +node.value / 100;
 	};
 </script>
 
@@ -136,8 +124,8 @@
 			name="color-picker"
 			value={colorPickerValue}
 			on:focus={focus}
-			on:change={changeColorPicker}
-			on:paste={changeColorPicker}
+			on:change={onChange('picker')}
+			on:paste={onChange('picker')}
 		/>
 	</label>
 
@@ -149,8 +137,8 @@
 			name="color"
 			value={colorValue}
 			on:focus={focus}
-			on:change={changeColor}
-			on:paste={changeColor}
+			on:change={onChange('color')}
+			on:paste={onChange('color')}
 		/>
 	</label>
 
@@ -164,8 +152,8 @@
 			name="opacity"
 			value={opacityValue}
 			on:focus={focus}
-			on:change={changeOpacity}
-			on:paste={changeOpacity}
+			on:change={onChange('opacity')}
+			on:paste={onChange('opacity')}
 		/>
 	</label>
 </div>
