@@ -13,6 +13,15 @@
 	/** Check if the given value is a valid color */
 	export const valid = (value: string): boolean => !!d3color.color(value);
 
+	/** try to parse a color in as many ways as possible, with a fallback */
+	const parseColor = (
+		value: string,
+		fallback = '#000000'
+	): d3color.RGBColor | d3color.HSLColor | null => {
+		if (valid(value)) return d3color.color(value);
+		else return d3color.color(`#${value}`) ?? d3color.color(fallback);
+	};
+
 	/** Select all text in the input on focus */
 	const focus = (e: FocusEvent) => (e.target as HTMLInputElement).select();
 
@@ -26,12 +35,11 @@
 
 <script lang="ts">
 	import { writable, type Writable } from 'svelte/store';
-	import formatinput from '$ui/lib/actions/formatinput';
 
 	/** the color space to render. Dropdown options */
 	export let colorspace: Colorspace = 'rgb';
 
-	/** fallback value if color is invalid */
+	/** fallback HEX value if color is invalid */
 	export let fallback: string = '#000000';
 
 	/** The color value as a string with opacity. ex: rgba(255,255,255,0.1), #ffffff */
@@ -52,11 +60,22 @@
 		else if ($color.opacity < 0) $color.opacity = 0;
 	}
 
-	const formatColor = (node: HTMLInputElement): string => {
+	$: colorPickerValue = $color?.formatHex() || fallback;
+	$: colorValue = ($color?.formatHex() || fallback).slice(1).toUpperCase();
+	$: opacityValue = toHundredths($color?.opacity || 1);
+
+	const changeColorPicker = (e: Event) => {
+		const node = e.target as HTMLInputElement;
+		const parsed = parseColor(node.value, fallback);
+		color.set(parsed);
+		return $color?.formatHex() || fallback;
+	};
+
+	const changeColor = (e: Event) => {
+		const node = e.target as HTMLInputElement;
+
 		// if invalid, try parsing as hex without hash
-		const parsed = valid(node.value)
-			? d3color.color(node.value)
-			: d3color.color(`#${node.value}`) ?? d3color.color(fallback);
+		const parsed = parseColor(node.value, fallback);
 
 		// update color object
 		color.set(parsed);
@@ -75,8 +94,10 @@
 		return uppercased;
 	};
 
-	const formatOpacity = (node: HTMLInputElement): string => {
+	const changeOpacity = (e: Event) => {
 		if (!$color) return `100%`;
+
+		const node = e.target as HTMLInputElement;
 
 		// default to 1 if the value is not a number
 		if (isNaN(+node.value) || +node.value >= 100) {
@@ -94,11 +115,11 @@
 </script>
 
 <div
-	class="inline-flex flex-row gap-2 items-center w-fit border border-transparent rounded-sm focus-within:border-figma-color-border-selected focus-highlight input-text group"
+	class="inline-flex flex-row items-center w-fit border border-transparent rounded-sm focus-within:border-figma-color-border-selected focus-highlight input-text group"
 >
-	<label class="h-7 flex-1 p-1.5 flex flex-row flex-nowrap gap-[7px]">
+	<label class="shrink-0 grow-0 pl-1.5 py-1.5">
 		<div
-			class="w-4 h-4 shrink-0 grow-0 relative"
+			class="w-4 h-4 relative"
 			style:background-color={$color?.copy({ opacity: 1 })?.formatRgb() ||
 				fallback}
 		>
@@ -110,25 +131,43 @@
 				/>
 			{/if}
 		</div>
+		<span class="sr-only">Color picker</span>
+		<input
+			class="sr-only"
+			type="color"
+			name="color-picker"
+			value={colorPickerValue}
+			on:focus={focus}
+			on:change={changeColorPicker}
+			on:paste={changeColorPicker}
+		/>
+	</label>
+
+	<label class="h-7 flex-1 p-1.5 flex flex-row flex-nowrap">
+		<span class="sr-only">Color</span>
 		<input
 			class="border-0 outline-none ring-0 flex-[1_0_72px]"
 			type="text"
-			aria-label="Color"
+			name="color"
+			value={colorValue}
 			on:focus={focus}
-			use:formatinput={formatColor}
+			on:change={changeColor}
+			on:paste={changeColor}
 		/>
 	</label>
 
 	<label
 		class="h-7 grid place-content-center flex-[0_0_56px] m-0 p-1.5 border-l border-l-transparent group-hover:border-l-figma-color-bg-tertiary group-focus-within:border-l-figma-color-bg-tertiary"
 	>
+		<span class="sr-only">Opacity</span>
 		<input
 			class="border-0 outline-none ring-0 w-full text-center"
 			type="text"
-			aria-label="Color opacity"
-			value="{toHundredths($color?.opacity || 1)}%"
+			name="opacity"
+			value={opacityValue}
 			on:focus={focus}
-			use:formatinput={formatOpacity}
+			on:change={changeOpacity}
+			on:paste={changeOpacity}
 		/>
 	</label>
 </div>
