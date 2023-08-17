@@ -1,4 +1,29 @@
-# Figma Plugin Boilerplate: Svelte + Vite + TypeScript
+<img src="https://raw.githubusercontent.com/the-dataface/figma-plugin-svelte-vite/master/.github/assets/logo.png" height="100px" alt="Logo" align='center'/>
+
+<h1 align="center">
+  Figma Plugin Boilerplate: Svelte + Vite
+</h1>
+
+<!-- Slogan -->
+<p align="center">
+   Create scalable Figma plugins with ease, using the power of Svelte + Vite!
+</p>
+
+<!-- Badges -->
+<p align="center">
+
+  <!-- Github Badges -->
+  <img src="https://raw.githubusercontent.com/TheSpawnProject/TheSpawnLanguage/master/.github/assets/github-badge.png" height="20px" />
+
+  <a href="https://github.com/the-dataface/figma-plugin-svelte-vite/commits/master">
+    <img src="https://img.shields.io/github/last-commit/the-dataface/figma-plugin-svelte-vite"/>
+  </a>
+
+  <a href="https://github.com/the-dataface/figma-plugin-svelte-vite/issues">
+    <img src="https://img.shields.io/github/issues/the-dataface/figma-plugin-svelte-vite"/>
+  </a>
+
+</p>
 
 This is a boilerplate for building Figma plugins with Svelte, Vite, and TypeScript. To learn more about building plugins, see the [Figma Plugin API documentation](https://www.figma.com/plugin-docs/intro/)
 
@@ -33,12 +58,11 @@ _Based on the great work of [figma-plugin-react-vite](https://github.com/Coconut
 ## Getting started
 
 1. Clone this repository
-2. Update `package.json` with the appropriate plugin name, description, author, links and other metadata.
-3. Install dependencies with `npm install`
-4. In Figma, go to `Plugins` > `Development` > `New Plugin...` and follow the prompts
-5. Copy the contents of `manifest.json` into the `figma.manifest.ts` file in this repository's root folder
-6. Run `npm run dev`to build the plugin. This command will watch for changes and rebuild the plugin automatically, updating Figma's plugin instance with the changes.
-7. To publish the plugin, run `npm run build` and upload the `/dist` folder to the Figma Developer Console
+2. Install dependencies with `npm install`
+3. In Figma, go to `Plugins` > `Development` > `New Plugin...` and follow the prompts
+4. Copy the contents of `manifest.json` into the `figma.manifest.ts` file in this repository's root folder
+5. Run `npm run dev`to build the plugin. This command will watch for changes and rebuild the plugin automatically, updating Figma's plugin instance with the changes.
+6. To publish the plugin, run `npm run build` and upload the `/dist` folder to the Figma Developer Console
 
 ## Caveats
 
