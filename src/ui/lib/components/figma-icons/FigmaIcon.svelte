@@ -27,7 +27,10 @@
 	$: icon = iconModules?.[`./icons/${name}.svg`] ?? name;
 </script>
 
-<span class="figma-icon {size || ''} {classes}" class:label-icon={isLabelIcon}>
+<span
+	class="figma-icon {size || ''} {classes} input-text"
+	class:label-icon={isLabelIcon}
+>
 	{#if icon}
 		<span>
 			{@html icon}
@@ -37,8 +40,7 @@
 
 <style lang="postcss">
 	.figma-icon {
-		@apply leading-none uppercase text-center grid place-content-center pointer-events-none;
-		font-size: 11px;
+		@apply uppercase text-center grid place-content-center pointer-events-none;
 	}
 	.figma-icon.label-icon {
 		@apply text-figma-color-text-secondary;
