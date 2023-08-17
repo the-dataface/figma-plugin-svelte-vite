@@ -16,11 +16,11 @@
   <img src="https://raw.githubusercontent.com/TheSpawnProject/TheSpawnLanguage/master/.github/assets/github-badge.png" height="20px" />
 
   <a href="https://github.com/the-dataface/figma-plugin-svelte-vite/commits/master">
-    <img src="https://img.shields.io/github/last-commit/the-dataface/figma-plugin-svelte-vite"/>
+    <img src="https://img.shields.io/github/last-commit/the-dataface/figma-plugin-svelte-vite" alt="Last commit"/>
   </a>
 
   <a href="https://github.com/the-dataface/figma-plugin-svelte-vite/issues">
-    <img src="https://img.shields.io/github/issues/the-dataface/figma-plugin-svelte-vite"/>
+    <img src="https://img.shields.io/github/issues/the-dataface/figma-plugin-svelte-vite" alt="Issues"/>
   </a>
 
 </p>
