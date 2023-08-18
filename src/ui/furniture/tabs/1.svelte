@@ -1,91 +1,48 @@
 <script lang="ts" context="module">
-	export const name: TabName = 'Tab #1';
-	export const icon: TabIcon = 'adjust';
-</script>
-
-<script lang="ts">
-	import { formatAngle } from '$ui/lib/actions/formatinput';
-	import { notify } from '$ui/lib/components/Message.svelte';
-	import FigmaIcon from '$ui/lib/components/figma-icons/FigmaIcon.svelte';
-	import Checkbox from '$ui/lib/components/inputs/Checkbox.svelte';
-	import Input from '$ui/lib/components/inputs/Input.svelte';
-	import PositionGrid from '$ui/lib/components/inputs/PositionGrid.svelte';
-	import Radio from '$ui/lib/components/inputs/Radio.svelte';
-	import Select from '$ui/lib/components/inputs/Select.svelte';
-	import ColorPicker from '$ui/lib/components/inputs/ColorPicker.svelte';
-
-	let angleValue = 0;
-	let colorpickerValue = '#ff0000';
-
-	const selectOptions = [
-		{
-			label: 'Option #1',
-			value: 1,
-			icon: 'alert',
-		},
-		{
-			label: 'Option #2',
-			value: 2,
-			icon: 'X',
-		},
-		{
-			label: 'Option #3',
-			value: 3,
-			icon: 'arrow-left-right',
-		},
-	] as SelectItem[];
+	export const name: TabName = 'Introduction';
+	export const icon: TabIcon = 'library';
 </script>
 
 <div class="flex flex-col gap-2">
-	<p>{name}</p>
+	<h2 class="font-bold text-lg mb-0">{name}</h2>
 
-	<div class="grid grid-cols-2 gap-2">
-		<div class="col-span-full flex flex-row flex-nowrap items-center gap-2">
-			<ColorPicker bind:value={colorpickerValue} />
-			<Radio
-				items={[
-					{
-						icon: 'visible',
-						'aria-label': 'visible',
-						id: 'color-visible',
-						value: true,
-					},
-					{
-						icon: 'minus',
-						'aria-label': 'hidden',
-						id: 'color-hidden',
-						value: false,
-					},
-				]}
-				value={undefined}
-			/>
-		</div>
-		<Input
-			icon="alert"
-			tooltip="Angle"
-			format={formatAngle}
-			bind:value={angleValue}
-		/>
-		<div class="w-full">
-			<Select
-				options={selectOptions}
-				placeholder={{ label: 'Select value', value: '-', icon: 'list' }}
-			/>
-		</div>
-		<Checkbox id="checkbox-example" label="Checkbox" checked={true} />
-	</div>
+	<p>
+		This is a boilerplate for building Figma plugins with Svelte, Vite, and
+		TypeScript. To learn more about building plugins, see the <a
+			class="underline"
+			href="https://www.figma.com/plugin-docs/intro/"
+			>Figma Plugin API documentation</a
+		>.
+	</p>
 
-	<div class="grid grid-cols-2">
-		<PositionGrid />
-
-		<button
-			class="rounded-md bg-figma-color-bg-inverse text-figma-color-text-oninverse p-2 text-sm flex items-center justify-center"
-			on:click={() => {
-				notify('hello world!');
-			}}
+	<p>
+		Read the template's <a
+			class="underline"
+			href="https://github.com/the-dataface/figma-plugin-svelte-vite/blob/main/README.md"
+			>README</a
 		>
-			<FigmaIcon name="alert" />
-			Notification!
-		</button>
-	</div>
+		to start building, and don't forget to generate your own
+		<a class="underline" href="https://www.figma.com/plugin-docs/manifest/"
+			>plugin manfiest</a
+		>. Click around this template's additional tabs to view included features.
+	</p>
+
+	<a
+		class="flex flex-row flex-nowrap gap-2 items-center justify-center rounded-sm leading-none p-2 border border-figma-color-bg-inverse bg-figma-color-bg-inverse text-figma-color-icon-oninverse text-sm hover:opacity-95 my-2"
+		href="https://github.com/new?template_name=figma-plugin-svelte-vite&template_owner=the-dataface"
+	>
+		<svg
+			height="16"
+			aria-hidden="true"
+			viewBox="0 0 16 16"
+			version="1.1"
+			width="16"
+		>
+			<path
+				d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"
+				fill="currentColor"
+			/>
+		</svg>
+		<span>Use this template</span>
+	</a>
 </div>

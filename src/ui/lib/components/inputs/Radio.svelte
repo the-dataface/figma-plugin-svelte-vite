@@ -43,7 +43,7 @@
 
 <div>
 	<fieldset
-		class="rounded-sm overflow-hidden inline-flex flex-row flex-nowrap border border-transparent hover:border-figma-color-bg-tertiary focus:border-figma-color-bg-tertiary group"
+		class="rounded-sm overflow-hidden inline-flex flex-row flex-nowrap border border-transparent hover:border-figma-color-bg-tertiary focus:border-figma-color-bg-tertiary group bg-figma-color-bg"
 	>
 		{#if label}
 			<legend class="sr-only">{label}</legend>

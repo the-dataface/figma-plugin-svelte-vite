@@ -121,7 +121,7 @@
 </script>
 
 <div
-	class="flex flex-row items-center w-fit border border-transparent rounded-sm focus-within:border-figma-color-border-selected focus-highlight input-text group"
+	class="flex flex-row items-center w-fit border border-transparent rounded-sm focus-within:border-figma-color-border-selected focus-highlight input-text group bg-figma-color-bg"
 >
 	<label class="shrink-0 grow-0 pl-1.5 py-1.5">
 		<div

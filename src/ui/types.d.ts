@@ -165,7 +165,7 @@ declare global {
 	}
 
 	type TabName = string;
-	type TabIcon = typeof SvelteComponent | FigmaIconName | undefined;
+	type TabIcon = typeof SvelteComponent | FigmaIconName | undefined | Emoji;
 
 	interface App {
 		tabs: SvelteComponent[];

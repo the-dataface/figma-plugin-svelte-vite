@@ -44,9 +44,16 @@
 	</label>
 
 	<header
-		class="text-center pl-3 py-3 pr-6 sticky top-0 inset-x-0 border-b border-figma-color-border"
+		class="text-center px-3 py-3 sticky top-0 inset-x-0 border-b border-figma-color-border"
 	>
-		<h1 class="font-bold">Svelte + Vite + TypeScript</h1>
+		<img
+			src="https://raw.githubusercontent.com/the-dataface/figma-plugin-svelte-vite/master/.github/assets/logo.png"
+			height="32"
+			class="h-8"
+			alt="Svelte + Vite + TypeScript"
+			role="heading"
+			aria-level={1}
+		/>
 	</header>
 
 	<nav
@@ -76,13 +83,17 @@
 						for="tab-{i}"
 					>
 						{#if component.icon}
-							{#if icons.has(component.icon)}
-								<FigmaIcon name={component.icon} />
-							{:else if isSvelteComponent(component.icon)}
-								<svelte:component this={component.icon} />
-							{:else if isEmoji(component.icon)}
-								<span>{@html component.icon}</span>
-							{/if}
+							<span
+								class="min-w-[32px] min-h-[32px] grid place-content-center text-lg leading-none"
+							>
+								{#if icons.has(component.icon)}
+									<FigmaIcon name={component.icon} />
+								{:else if isSvelteComponent(component.icon)}
+									<svelte:component this={component.icon} />
+								{:else if isEmoji(component.icon)}
+									<span>{@html component.icon}</span>
+								{/if}
+							</span>
 						{/if}
 						<span>
 							{component.name}

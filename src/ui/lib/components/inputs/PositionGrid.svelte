@@ -50,7 +50,7 @@
 </script>
 
 <fieldset
-	class="inline-grid grid-cols-3 grid-rows-3 w-16 h-16 border border-solid border-figma-color-bg-tertiary rounded-sm"
+	class="inline-grid grid-cols-3 grid-rows-3 w-16 h-16 border border-solid border-figma-color-bg-tertiary rounded-sm bg-figma-color-bg"
 >
 	{#each positions as position}
 		{@const [y, x] = position.value.split('-')}

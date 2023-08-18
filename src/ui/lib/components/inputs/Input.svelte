@@ -5,13 +5,16 @@
 		type FormatInputOptions,
 	} from '$ui/lib/actions/formatinput';
 
-	export let format: FormatInputOptions['format'] = (value) => `${value ?? ''}`;
+	export let format: FormatInputOptions['format'] = (node) =>
+		`${node.value ?? ''}`;
 
 	export let icon: FigmaIconName | undefined = 'visible';
 
 	export let tooltip: string | undefined = 'Tooltip';
 
 	export let value: unknown = undefined;
+
+	export let placeholder: string | undefined = undefined;
 
 	const focus = (e: FocusEvent) => {
 		(e.target as HTMLInputElement).select();
@@ -24,6 +27,7 @@
 	{/if}
 	<input
 		class="bg-figma-color-bg text-figma-color-text font-normal text-[11px] leading-none rounded-none focus:ring-0 focus:outline-none"
+		{placeholder}
 		dir="auto"
 		spellcheck="false"
 		on:focus={focus}
