@@ -32,7 +32,7 @@
 <div class="w-full h-full flex flex-col flex-wrap">
 	<div class="flex-1 flex">
 		<Rail />
-		<main class="flex-1 min-w-[320px] max-h-screen overflow-auto p-3">
+		<main id="main" class="flex-1 min-w-[320px] max-h-screen overflow-auto p-3">
 			{#each tabs as component}
 				<section class:hidden={$tab !== component.name}>
 					<h2 class="sr-only">{component.name}</h2>

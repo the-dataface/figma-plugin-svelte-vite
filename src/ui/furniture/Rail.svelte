@@ -18,6 +18,15 @@
 		menuToggle.checked = false;
 	};
 
+	const scrollToTop = () => {
+		if (!document) return;
+		document.getElementById('main')?.scrollTo({
+			top: 0,
+		});
+	};
+
+	$: $tab, scrollToTop();
+
 	$: $tab, closeMenu();
 </script>
 
