@@ -26,7 +26,7 @@
 		{
 			label: 'Toasts',
 			description:
-				'Expanding on messaging, you can easily send toast to Figma while utilizing Figma\'s built-in toaster. Use the `notify` function exported from `Message.svelte` to send a toast. View notify\'s <a class="underline" href="https://www.figma.com/plugin-docs/api/properties/figma-notify/">documentation</a> for more information.',
+				'Expanding on messaging, you can easily send toast to Figma while utilizing Figma\'s built-in toaster. Use the `notify` function exported from `Message.svelte` to send a toast. View notify\'s <a class="underline" href="https://www.figma.com/plugin-docs/api/properties/figma-notify/" target="_blank">documentation</a> for more information.',
 		},
 	];
 </script>

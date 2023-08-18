@@ -11,7 +11,7 @@
 		TypeScript. To learn more about building plugins, see the <a
 			class="underline"
 			href="https://www.figma.com/plugin-docs/intro/"
-			>Figma Plugin API documentation</a
+			target="_blank">Figma Plugin API documentation</a
 		>.
 	</p>
 
@@ -19,17 +19,20 @@
 		Read the template's <a
 			class="underline"
 			href="https://github.com/the-dataface/figma-plugin-svelte-vite/blob/main/README.md"
-			>README</a
+			target="_blank">README</a
 		>
 		to start building, and don't forget to generate your own
-		<a class="underline" href="https://www.figma.com/plugin-docs/manifest/"
-			>plugin manfiest</a
+		<a
+			class="underline"
+			href="https://www.figma.com/plugin-docs/manifest/"
+			target="_blank">plugin manfiest</a
 		>. Click around this template's additional tabs to view included features.
 	</p>
 
 	<a
 		class="flex flex-row flex-nowrap gap-2 items-center justify-center rounded-sm leading-none p-2 border border-figma-color-bg-inverse bg-figma-color-bg-inverse text-figma-color-icon-oninverse text-sm hover:opacity-95 my-2"
 		href="https://github.com/new?template_name=figma-plugin-svelte-vite&template_owner=the-dataface"
+		target="_blank"
 	>
 		<svg
 			height="16"
