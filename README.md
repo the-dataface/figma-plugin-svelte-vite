@@ -1,4 +1,6 @@
-<img src="https://raw.githubusercontent.com/the-dataface/figma-plugin-svelte-vite/master/.github/assets/logo.png" height="100px" alt="Logo" align='center'/>
+<p align='center'>
+<img src="https://raw.githubusercontent.com/the-dataface/figma-plugin-svelte-vite/master/.github/assets/logo.png" height="100px" alt="Logo" />
+</p>
 
 <h1 align="center">
   Figma Plugin Boilerplate: Svelte + Vite
