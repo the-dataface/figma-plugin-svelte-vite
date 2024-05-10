@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	// glob import all figma icons
 	const iconModules = import.meta.glob('./icons/*.svg', {
-		as: 'raw',
+		query: '?raw',
 		import: 'default',
 		eager: true,
 	});
