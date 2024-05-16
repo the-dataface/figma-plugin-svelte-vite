@@ -59,6 +59,6 @@
 		"typescript": "^5.4.5",
 		"vite": "^5.2.11",
 		"vite-plugin-generate-file": "^0.1.1",
-		"vite-plugin-singlefile": "^0.13.5"
+		"vite-plugin-singlefile": "^2.0.1"
 	}
 }
