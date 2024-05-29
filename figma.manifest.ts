@@ -7,5 +7,7 @@ export default {
 	main: 'plugin.js',
 	ui: 'index.html',
 	enableProposedApi: false,
-	editorType: ['figma', 'figjam'],
+	editorType: ['figma'],
+	documentAccess: 'dynamic-page',
+	networkAccess: { allowedDomains: ['none'] },
 };
