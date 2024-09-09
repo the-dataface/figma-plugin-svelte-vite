@@ -37,7 +37,7 @@
 	],
 	"type": "module",
 	"scripts": {
-		"dev": "concurrently 'npm run dev:ui' 'npm run dev:plugin'",
+		"dev": "concurrently \"npm run dev:ui\" \"npm run dev:plugin\"",
 		"dev:ui": "vite build --watch -c ./vite.config.ui.ts",
 		"dev:plugin": "vite build --watch -c ./vite.config.plugin.ts",
 		"build": "tsc && npm run build:ui && npm run build:plugin",
